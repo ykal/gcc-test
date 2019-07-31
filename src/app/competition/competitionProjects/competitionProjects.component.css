@@ -1,0 +1,59 @@
+.create {
+  margin-left: 1em;
+  padding: 0.3em 2em;
+}
+
+.filter {
+  margin-bottom: 2em;
+}
+
+select {
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  margin-top: 1em;
+}
+
+.no-resource-found {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 90%;
+  margin: auto auto 8em auto;
+  padding: 2em;
+}
+
+.content {
+  margin: 0 1.5em 5em;
+}
+
+.project-items {
+  cursor: pointer;
+}
+
+.project-items:hover {
+  background: #f4f4f4;
+}
+
+table {
+  width: 70%;
+  margin: auto;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  table {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+tbody > tr > td:nth-child(2),
+thead > tr > th:nth-child(2) {
+  text-align: left;
+}
+
+.widget-search select {
+  margin-top: 0.3em;
+}

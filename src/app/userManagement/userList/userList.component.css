@@ -1,0 +1,65 @@
+#aside,
+#create-button {
+  float: right;
+}
+
+#aside {
+  width: 50%;
+}
+
+tbody > tr:hover {
+  background: #f4f4f4;
+}
+
+.users-list {
+  border-bottom: 1px solid #e3e3e3;
+  padding-right: 1em;
+  margin-bottom: 3em;
+}
+
+.create {
+  margin-left: 1em;
+  padding: 0.3em 2em;
+}
+
+.filter-container {
+  margin-bottom: 2em;
+}
+
+.filter-container .filter {
+  float: right;
+  margin-left: 2em;
+}
+
+.filter-container .filter:last-child {
+  margin-right: 0;
+}
+
+select {
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.5em;
+}
+
+.no-resource-found {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  width: 90%;
+  margin: auto auto 8em auto;
+}
+
+td {
+  cursor: pointer;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  text-align: center;
+}

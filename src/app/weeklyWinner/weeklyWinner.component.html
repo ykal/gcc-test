@@ -1,0 +1,33 @@
+<div id="pricing" class="section md-padding" *ngIf="winners.length > 0">
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Section header -->
+      <div class="section-header text-center">
+        <h2 class="title">Projects of the week</h2>
+      </div>
+      <!-- /Section header -->
+
+      <!-- pricing -->
+      <div *ngFor="let winner of winners" class="col-sm-4">
+        <div class="pricing" id="pricing">
+          <div class="price-head">
+            <span class="price-title">{{ winner.rank }} Place</span>
+            <div class="pricing-content">
+              <h3 class="title project-title text-center">{{getTitle(winner.solveitproject.title)}}</h3>
+            </div>
+          </div>
+          <ul class="price-content">
+            <li>
+              <p>{{ winner.week }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /pricing -->
+    </div>
+    <!-- Row -->
+  </div>
+  <!-- /Container -->
+</div>

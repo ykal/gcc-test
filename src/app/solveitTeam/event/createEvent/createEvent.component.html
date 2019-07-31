@@ -1,0 +1,84 @@
+<form [formGroup]="eventForm">
+  <h5>Create Event</h5>
+  <div id="resource-form">
+    <div class="form-group">
+      <input type="text" class="form-control" name="title" placeholder="Name" formControlName="title"
+        [(ngModel)]="event.title" />
+      <div class="error-message" *ngIf="
+          eventForm.controls.title.invalid && eventForm.controls.title.touched
+        ">
+        <p>* Event title is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="city" placeholder="City" formControlName="city"
+        [(ngModel)]="event.city" />
+      <div class="error-message" *ngIf="
+          eventForm.controls.city.invalid && eventForm.controls.city.touched
+        ">
+        <p>* City is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="place" placeholder="Place" formControlName="place"
+        [(ngModel)]="event.place">
+      <div class="error-message" *ngIf="
+          eventForm.controls.place.invalid && eventForm.controls.place.touched
+        ">
+        <p>* Event place title is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="venue" placeholder="Venue" formControlName="venue"
+        [(ngModel)]="event.venue" />
+      <div class="error-message" *ngIf="
+          eventForm.controls.venue.invalid && eventForm.controls.venue.touched
+        ">
+        <p>* Event venue is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea placeholder="Description" class="form-control" formControlName="description"
+        [(ngModel)]="event.description">
+      </textarea>
+      <div class="error-message" *ngIf="
+          eventForm.controls.description.invalid &&
+          eventForm.controls.description.touched
+        ">
+        <p>* Event description is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Starts</label>
+      <input [owlDateTime]="dt2" formControlName="startDate" [(ngModel)]="event.startDate" [owlDateTimeTrigger]="dt2"
+        placeholder="Starting Date" />
+      <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar"></i></span>
+      <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
+      <div class="error-message" *ngIf="
+          eventForm.controls.startDate.invalid &&
+          eventForm.controls.startDate.touched
+        ">
+        <p>* Event starting date is required.</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="">Ends</label>
+      <input [owlDateTime]="dt" formControlName="endDate" [(ngModel)]="event.endDate" [owlDateTimeTrigger]="dt"
+        placeholder="Ending Date" />
+      <span [owlDateTimeTrigger]="dt"><i class="fa fa-calendar"></i></span>
+      <owl-date-time [pickerMode]="'dialog'" #dt></owl-date-time>
+      <div class="error-message" *ngIf="
+          eventForm.controls.endDate.invalid &&
+          eventForm.controls.endDate.touched
+        ">
+        <p>* Event end date is required.</p>
+      </div>
+    </div>
+
+    <div class="form-group" id="resource-upload-btn">
+      <input type="button" (click)="createEvent()" class="main-btn" value="Submit" />
+    </div>
+  </div>
+</form>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

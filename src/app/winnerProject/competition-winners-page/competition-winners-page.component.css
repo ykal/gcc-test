@@ -1,0 +1,100 @@
+#winners-page {
+    margin: 2em 5em;
+} 
+
+.competition-name {
+    clear: both;
+    text-align: center;
+    color: #b9638e;
+    margin-bottom: 1em;
+}
+
+.competition-winners {
+    clear: both;
+    margin-bottom: 2em;
+}
+
+.city-name {    
+    color: #b9638e;
+}
+
+.city-winners {
+    margin: 1em auto 2em;
+}
+
+.winner {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    border-radius: 1em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.winner:hover {
+    transform: scale(1.2);
+    margin: 1em 1em;
+}
+
+.winner > img { 
+    width: 80%;
+    margin: 1em auto;
+    height: 10em;
+}
+.filter {
+    float: right;
+    margin: 0 auto 4em;
+}
+/* Custom dropdown */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px; /* demo only */
+  }
+  
+  .custom-dropdown select {
+    padding: 1em;
+    width: 100%;
+    background-color: #b9638e;
+    color: #fff;
+    font-size: inherit;
+    padding: .5em;
+    padding-right: 2.5em;	
+    border: 0;
+    margin: 0;
+    border-radius: 3px;
+    text-indent: 0.01px;
+    text-overflow: '';
+    -webkit-appearance: button; /* hide default arrow in chrome OSX */
+  }
+  
+  .custom-dropdown::before,
+  .custom-dropdown::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  .custom-dropdown::after { /*  Custom dropdown arrow */
+    content: "\25BC";
+    height: 1em;
+    font-size: .625em;
+    line-height: 1;
+    right: 1.2em;
+    top: 50%;
+    margin-top: -.5em;
+    color: #fafafa;
+  }
+  
+  .custom-dropdown::before { /*  Custom dropdown arrow cover */
+    width: 2em;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 0 3px 3px 0;
+  }

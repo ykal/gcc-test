@@ -1,0 +1,171 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row main-container">
+    <div class="col-md-4 menu-container">
+      <ul class="project-menu">
+        <li
+          [class.selected]="selected === views[0]"
+          (click)="toggleView('report')"
+        >
+          <span class="icon"><i class="fa fa-line-chart"></i></span> Progress
+          Reports
+        </li>
+        <li
+          [class.selected]="selected === views[1]"
+          (click)="toggleView('members')"
+        >
+          <span class="icon"><i class="fa fa-users"></i></span> Members
+        </li>
+        <li
+          [class.selected]="selected === views[2]"
+          (click)="toggleView('add-member')"
+          *ngIf="isMember(authService.getUserId())"
+        >
+          <span class="icon"><i class="fa fa-user-plus"></i></span> Add Member
+        </li>
+        <li
+          data-toggle="modal"
+          data-target="#createProjectModal"
+          data-backdrop="static"
+          *ngIf="isMember(authService.getUserId())"
+        >
+          <span class="icon"><i class="fa fa-pencil-square"></i></span> Edit
+          Project
+        </li>
+        <li
+          (click)="backToCompetitionProjects()"
+          *ngIf="
+            authService.isAdmin() ||
+            authService.isSolveitManager() ||
+            authService.isSolveitTeam()
+          "
+        >
+          <span class="icon"><i class="fa fa-arrow-left"></i></span> Back
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8 project-content">
+      <div class="row project-profile" *ngIf="project !== null">
+        <h3 id="project-title">Title : {{ project.title }}</h3>
+        <h4 id="label">Description</h4>
+        <p id="description">{{ project.description }}</p>
+        <h4 id="proposal-label">Proposal</h4>
+        <p id="proposal-description">
+          <span id="download" (click)="downloadProposal(project.proposal.name)">
+            <i style="margin-right: 1em" class="fa fa-file"></i>Download</span
+          >
+        </p>
+        <h4 id="status-label">Status</h4>
+        <p
+          id="status-description"
+          *ngIf="!isEnrolled"
+          data-toggle="modal"
+          data-target="#myModal"
+          data-backdrop="static"
+        >
+          Not registered in any competitions yet.
+          <span id="enroll">Enroll</span>
+        </p>
+        <p id="status-description" *ngIf="isEnrolled">
+          <span id="enroll">Enrolled to a competition.</span>
+        </p>
+      </div>
+      <div
+        class="row progress-reports"
+        *ngIf="selected == views[0] && !selectedProgressReport"
+      >
+        <div class="panel panel-default">
+          <div id="progress-report-heading">
+            <h3 id="progress-report-title">Progress reports</h3>
+            <button
+              class="main-btn"
+              (click)="toggleUploadReport(true)"
+              *ngIf="!uploadReport"
+              id="upload-progress-report"
+            >
+              Upload
+            </button>
+            <button
+              class="main-btn"
+              (click)="toggleUploadReport(false)"
+              *ngIf="uploadReport"
+              id="show-progress-report"
+            >
+              Back
+            </button>
+          </div>
+          <div class="panel-body" id="progress-report-content">
+            <div class="reports" *ngIf="!uploadReport">
+              <div *ngIf="progressReports.length > 0">
+                <div
+                  class="col-md-4 col-sm-6"
+                  *ngFor="let report of progressReports"
+                  (click)="viewProgressReport(report)"
+                >
+                  <div class="service">
+                    <i class="fa fa-file-text"></i>
+                    <h4>{{ limitProjectProposalTitle(report.title, 7) }}</h4>
+                    <p>{{ report.createdAt | amTimeAgo }}</p>
+                    <p>
+                      {{
+                        "By " + (report.user ? report.user.username : "Unknown")
+                      }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="progressReports.length == 0">
+                <div class="not-found">
+                  <div class="no-resource-found">
+                    <app-not-found
+                      message="You haven't uploaded any
+                    report, yet."
+                    ></app-not-found>
+                    <button
+                      class="outline-btn"
+                      (click)="toggleUploadReport(true)"
+                    >
+                      create Here
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <app-create-progress-report
+              (created)="reportCreated()"
+              [project]="project"
+              *ngIf="uploadReport"
+            ></app-create-progress-report>
+          </div>
+        </div>
+      </div>
+      <app-add-project-member
+        *ngIf="selected == views[2]"
+        [project]="project"
+      ></app-add-project-member>
+      <project-member-list
+        *ngIf="selected == views[1]"
+        [project]="project"
+      ></project-member-list>
+      <app-report-view
+        *ngIf="selectedProgressReport"
+        (back)="back()"
+        [report]="selectedProgressReport"
+      ></app-report-view>
+    </div>
+  </div>
+</div>
+
+<app-join-competition
+  [activeCompetitions]="activeCompetitions"
+  [isJoinCompetitionSuccessfull]="isJoinCompetitionSuccessfull"
+  (join)="onJoinCompetition($event)"
+  (checkIfJoined)="isProjectRegisteredToCompetition()"
+></app-join-competition>
+
+<app-project-create
+  [project]="project"
+  [isEdit]="true"
+  (created)="onProjectUpdated()"
+></app-project-create>

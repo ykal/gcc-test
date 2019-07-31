@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<div class="container" id="project-list-header">
+  <div class="events-list-header">
+    <div class="header">
+      <h4 (click)="toggleView('project-list')" class="title">Projects</h4>
+      <button
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Create new project"
+        type="button"
+        data-toggle="modal"
+        data-target="#createProjectModal"
+        data-backdrop="static"
+        class="btn main-btn btn-circle-xl"
+      >
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-project-list [projects]="projects"></app-project-list>
+<app-project-create
+  [isEdit]="false"
+  (created)="projectCreated()"
+></app-project-create>

@@ -1,0 +1,160 @@
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" (click)="reset()" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Joining A Competition</h4>
+            </div>
+            <div class="modal-body">
+                <form *ngIf="activeCompetitions.length >  0 && !isJoinCompetitionSuccessfull" [formGroup]="form" id="join-competititon-form">
+
+                    <div *ngIf="currentForm === formSteps[0]" class="competition">
+                        <h6 class="title">Competition</h6>
+                        <div class="input-field">
+                            <select id="competitionInput" name="competetion" formControlName="competition" [(ngModel)]="competition">
+                                <option value="">Select Competetion</option>
+                                <option *ngFor="let competition of activeCompetitions" [value]="competition.id" >{{ competition.name }}</option>
+                            </select>
+                            <div class="error-message" *ngIf="form.controls.competition.invalid && form.controls.competition.touched">
+                                <p>* Competition is required.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="innovation-info" *ngIf="currentForm === formSteps[0]" formGroupName="innovationInfo">
+                        <h6 class="title">Innovation Information</h6>
+                        <div class="input-field">
+                            <select id="productType" name="product" formControlName="productType" [(ngModel)]="innovationInfo.productType">
+                                <option value="" selected>What kind of product are you going to develop ? </option>
+                                <option *ngFor="let type of productTypes" [value]="type" >{{ type }}</option>
+                            </select>
+                            <input *ngIf="innovationInfo.productType === productTypes[productTypes.length - 1]" class="input" type="text"
+                                    formControlName="otherProductType" name="otherProductType" placeholder="" [(ngModel)]="innovationInfo.otherProductType" />
+                            <div class="error-message" *ngIf="(form.controls.innovationInfo.controls.productType.invalid && form.controls.innovationInfo.controls.productType.touched) || (innovationInfo.productType ==  productTypes[productTypes.length - 1] && form.controls.innovationInfo.controls.otherProductType.invalid && form.controls.innovationInfo.controls.otherProductType.touched)">
+                                <p>* Product Type is Required is required.</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <select id="sectorInput" name="sector" formControlName="sector" [(ngModel)]="innovationInfo.sector">
+                                <option value="">Select Sector</option>
+                                <option *ngFor="let sector of sectors" [value]="sector" >{{ sector }}</option>
+                            </select>
+                            <input *ngIf="innovationInfo.sector === sectors[sectors.length - 1]" class="input" type="text" name="otherSector"
+                                    formControlName="otherSector" placeholder="" [(ngModel)]="innovationInfo.otherSector" />
+                            <div class="error-message" *ngIf="(form.controls.innovationInfo.controls.sector.invalid && form.controls.innovationInfo.controls.sector.touched) || (innovationInfo.sector == sectors[sectors.length - 1] && form.controls.innovationInfo.controls.otherSector.invalid && form.controls.innovationInfo.controls.otherSector.touched)">
+                                <p>* Sector is required.</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <textarea class="input" type="text" name="description" placeholder="How would you describe your innovation"
+                                formControlName="description" [(ngModel)]="innovationInfo.description">
+                            </textarea>
+                            <div class="error-message" *ngIf="form.controls.innovationInfo.controls.description.invalid && form.controls.innovationInfo.controls.description.touched">
+                                <p>* Product Description is required.</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input class="input" type="text" name="whatProblem" placeholder="What problem is your innovation solving"
+                                formControlName="whatProblem" [(ngModel)]="innovationInfo.whatProblem" />
+                            <div class="error-message" *ngIf="form.controls.innovationInfo.controls.whatProblem.invalid && form.controls.innovationInfo.controls.whatProblem.touched">
+                                <p>* This field is required.</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input class="input" type="text" name="howToSolve" placeholder="How does your innovation solve this problem?"
+                                formControlName="howToSolve" [(ngModel)]="innovationInfo.howToSolve" />
+                            <div class="error-message" *ngIf="form.controls.innovationInfo.controls.howToSolve.invalid && form.controls.innovationInfo.controls.howToSolve.touched">
+                                <p>* This field is required.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="furtherInfo" *ngIf="currentForm === formSteps[1]" formGroupName="furtherInfo">
+                        <h6 class="title">Further Info</h6>
+                        <div class="input-field">
+                            <input class="input" type="text" name="whyParticipate" placeholder="Why do you want to be a part of this competition?"
+                                formControlName="whyParticipate" [(ngModel)]="furtherInfo.whyParticipate" />
+                            <div class="error-message" *ngIf="form.controls.furtherInfo.controls.whyParticipate.invalid && form.controls.furtherInfo.controls.whyParticipate.touched">
+                                <p>* This field is required.</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <select id="howToParticipateInput" name="howToParticipate"
+                                formControlName="teamOrNah" [(ngModel)]="furtherInfo.teamOrNah">
+                                <option value="">How do you want to be participate ?</option>
+                                <option *ngFor="let item of howToParticipate" [value]="item">{{ item }}</option>
+                            </select>
+                            <div class="error-message" *ngIf="form.controls.furtherInfo.controls.teamOrNah.invalid && form.controls.furtherInfo.controls.teamOrNah.touched">
+                                <p>* This field is required.</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input class="input" type="text" name="teamOrNahReason" placeholder="Why"
+                            formControlName="teamOrNahReason" [(ngModel)]="furtherInfo.teamOrNahReason" />
+                            <div class="error-message" *ngIf="form.controls.furtherInfo.controls.teamOrNahReason.invalid && form.controls.furtherInfo.controls.teamOrNahReason.touched">
+                                <p>* This field is required.</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <select id="everBeenInCompetitionInput" name="everBeenInCompetition"
+                                formControlName="everBeenInCompetition" [(ngModel)]="furtherInfo.everBeenInCompetition">
+                                <option value="">Have you ever been involved in a competition before?</option>
+                                <option value="yes" > Yes </option>
+                                <option value="no" > No </option>
+                            </select>
+                            <div class="error-message" *ngIf="form.controls.furtherInfo.controls.everBeenInCompetition.invalid && form.controls.furtherInfo.controls.everBeenInCompetition.touched">
+                                <p>* This field is required.</p>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <input *ngIf="furtherInfo.everBeenInCompetition === 'yes'" class="input" type="text" name="everBeenInCompetition"
+                            placeholder="If so, which competition and when?"
+                            formControlName="competitionEverBeen" [(ngModel)]="furtherInfo.competitionEverBeen" />
+                            <div class="error-message" *ngIf="furtherInfo.everBeenInCompetition === 'yes' && form.controls.furtherInfo.controls.competitionEverBeen.invalid &&
+                                                              form.controls.furtherInfo.controls.competitionEverBeen.touched">
+                                <p>* This field is required.</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                          <ng-multiselect-dropdown [placeholder]="'How did you find out about this competition'" [data]="infoSources" formControlName="mediaResource"
+                                                   [(ngModel)]="furtherInfo.mediaResource" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                          </ng-multiselect-dropdown>
+                          <div class="error-message" *ngIf="form.controls.furtherInfo.controls.mediaResource.invalid &&
+                                                              form.controls.furtherInfo.controls.mediaResource.touched">
+                            <p>* This field is required.</p>
+                          </div>
+                        </div>
+                        <div class="input-field">
+                            <input class="input" type="text" name="mediaName"
+                            placeholder="Please specify the exact name of the newspaper, radio station, TV station or website from which you found the information on"
+                            [(ngModel)]="furtherInfo.mediaName" formControlName="mediaName" />
+                            <div class="error-message" *ngIf="form.controls.furtherInfo.controls.mediaName.invalid &&
+                                                              form.controls.furtherInfo.controls.mediaName.touched">
+                                <p>* This field is required.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                      <button *ngIf="currentForm === formSteps[0]" (click)="onNext()" class="main-btn">Next</button>
+                      <div class="row">
+                        <button *ngIf="currentForm === formSteps[1]" (click)="toggleForm(0)" class="outline-btn">Back</button>
+                        <button *ngIf="currentForm === formSteps[1]" (click)="onJoin()" class="main-btn">Join</button>
+                      </div>
+                    </div>
+                </form>
+                <div class="info" *ngIf="true">
+                    <p *ngIf="activeCompetitions.length === 0">There are no active competitions.</p>
+                    <div class="sucessfully-joined" *ngIf="isJoinCompetitionSuccessfull">
+                      <h6 class="info-text header">Congratulations, </h6>
+                      <h6 class="info-text header">You have successfully joined <span class="competition-name">{{getSelectedCompetitionInfo(competition)}}</span> competition.</h6>
+                      <p class="info-text header">Good Luck!!!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

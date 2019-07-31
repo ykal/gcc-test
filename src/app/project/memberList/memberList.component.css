@@ -1,0 +1,10 @@
+.span {
+    margin-left: 2em;
+    color: #dc5348;
+    cursor: pointer;
+    padding: .5em
+}
+
+.span:hover {
+    background: #e3e3e3;
+}

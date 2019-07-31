@@ -1,0 +1,85 @@
+form {
+  width: 50%;
+  margin: 5em auto;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1em;
+}
+
+h5 {
+  margin-top: 2em;
+}
+
+#resource-form {
+  width: 70%;
+  margin: auto;
+  padding: 1em;
+}
+
+@media screen and (max-width: 400px) {
+  #resource-form {
+    width: 100%;
+    margin: auto;
+    padding: 1em;
+  }
+
+  form {
+    width: 100%;
+    margin: 2em auto;
+  }
+}
+
+@media screen and (min-width: 401px) and (max-width: 720px) {
+  #resource-form {
+    width: 100%;
+    margin: auto;
+    padding: 1em;
+  }
+
+  form {
+    width: 100%;
+    margin: 2em auto;
+  }
+}
+
+.form-group {
+  margin-bottom: 2em;
+}
+
+#resource-form select {
+  background: #fafafa;
+  border: none;
+  border-bottom: 2px solid #eeeeee;
+  padding: 1em;
+  height: 3.5em;
+}
+
+#progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+#resource-upload-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 0.7em;
+  color: #ec4643;
+}
+
+.err {
+  border-color: #ec4643;
+}
+
+h5 {
+  text-align: center;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+  background-color: #b9638e;
+}

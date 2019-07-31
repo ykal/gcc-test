@@ -1,0 +1,41 @@
+<div class="forum-list">
+  <div class="forums-list-content">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Week</th>
+          <th scope="col">Project</th>
+          <th scope="col">Rank</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="
+            let winner of (weeklyWinners
+              | paginate: { itemsPerPage: 10, currentPage: page });
+            let i = index
+          ">
+          <th scope="row">{{ winner.week }}</th>
+          <td>{{ winner.solveitproject.title }}</td>
+          <td>{{ winner.rank }}</td>
+          <td>
+            <span *ngIf="!winner.active">INACTIVE</span>
+            <button *ngIf="winner.active" (click)="removeWeeklyWinnerLabel(winner)" type="button"
+              class="btn btn-danger">
+              Deactivate
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="no-resource-found" *ngIf="weeklyWinners.length === 0">
+    <p><i class="fa  fa-frown-o"></i> {{ " No recoded uploaded yet." }}</p>
+  </div>
+
+  <div class="forum-pagination">
+    <pagination-controls *ngIf="weeklyWinners.length > 10" (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

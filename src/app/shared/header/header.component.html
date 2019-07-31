@@ -1,0 +1,129 @@
+<!-- Header -->
+<header>
+  <!-- Nav -->
+  <nav id="nav" class="navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- Logo -->
+        <div class="navbar-brand">
+          <a routerLink="">
+            <img
+              style="padding: 0.1em"
+              class="logo"
+              src="../../assets/img/gcc.png"
+              alt="logo"
+            />
+          </a>
+        </div>
+        <!-- /Logo -->
+
+        <!-- Collapse nav button -->
+        <div
+          class="navbar-toggler nav-collapse"
+          type="button"
+          data-toggle="collapse"
+          data-target="#menus"
+          aria-controls="menus"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon" style="color: #FFFFFF;"></span>
+        </div>
+
+        <!-- /Collapse nav button -->
+      </div>
+
+      <!-- Main navigation -->
+      <div class="collapse navbar-collapse" id="menus">
+        <ul class="nav navbar-nav navbar-right">
+          <li [class.active]="router.isActive('', true)">
+            <a routerLink="">Home</a>
+          </li>
+          <li *ngIf="router.isActive('', true)">
+            <a href="#features">About</a>
+          </li>
+          <li [class.active]="router.isActive('blog', false)">
+            <a href="#service">Blog</a>
+          </li>
+          <li
+            [class.active]="router.isActive('dashboard', false)"
+            *ngIf="
+              authService.isSolveitTeam() ||
+              authService.isSolveitManager() ||
+              authService.isAdmin()
+            "
+          >
+            <a routerLink="/dashboard">Dashboard</a>
+          </li>
+          <li [class.active]="router.isActive('events', false)">
+            <a routerLink="/events">Events</a>
+          </li>
+          <li [class.active]="router.isActive('forums', false)">
+            <a routerLink="/forums">Forums</a>
+          </li>
+          <!--
+            <li [class.active]="router.isActive('news', false)">
+              <a routerLink="/news">News</a>
+            </li>
+          -->
+          <li [class.active]="router.isActive('resources', false)">
+            <a routerLink="/resources" *ngIf="authService.isAuthenticated()"
+              >Resources</a
+            >
+          </li>
+          <li
+            [class.active]="
+              router.isActive('login', false) ||
+              router.isActive('register', false) ||
+              router.isActive('forget-password', false)
+            "
+            *ngIf="!authService.isAuthenticated()"
+          >
+            <a routerLink="/login">SignIn/SignUp</a>
+          </li>
+          <li
+            [class.active]="router.isActive('my-projects', false)"
+            *ngIf="authService.isAuthenticated()"
+            class="has-dropdown"
+          >
+            <a
+              ><span style="margin-right: .5em;"
+                ><i class="fa fa-user"></i></span
+              >{{ "" }}</a
+            >
+            <ul class="dropdown1">
+              <li *ngIf="authService.isSolveitParticipant()">
+                <a routerLink="/my-projects">My Projects</a>
+              </li>
+              <li *ngIf="!authService.isAdmin()">
+                <a
+                  [routerLink]="[
+                    '/dashboard/userProfile',
+                    authService.getUserId()
+                  ]"
+                  >Profile</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink=""
+                  (click)="authService.signOut()"
+                  style="cursor: pointer;"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- /Main navigation -->
+    </div>
+  </nav>
+  <!-- /Nav -->
+
+  <!-- header wrapper -->
+  <div class="container"></div>
+  <!-- /header wrapper -->
+</header>
+<!-- /Header -->

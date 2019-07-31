@@ -1,0 +1,33 @@
+#commenter-avatar {
+  max-width: 1.5em;
+}
+
+.reply {
+  cursor: pointer;
+}
+
+.comment-reply {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.reply-form,
+.comment-reply {
+  margin: 1em;
+  padding: 1em;
+}
+
+i {
+  margin: 0.5em;
+}
+
+.media {
+  margin-top: 1em;
+}
+
+.remove {
+  color: #ec4643;
+}
+
+.reply:hover {
+  text-decoration: underline;
+}

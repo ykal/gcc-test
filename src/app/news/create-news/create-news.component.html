@@ -1,0 +1,79 @@
+<form [formGroup]="newsForm">
+  <div id="news-form">
+    <!-- Section-header -->
+    <div class="section-header text-center">
+      <h2 class="title">Create News</h2>
+    </div>
+    <!-- /Section-header -->
+    <div class="form-group">
+      <input
+        type="text"
+        class="input"
+        name="title"
+        placeholder="Title"
+        formControlName="title"
+        [(ngModel)]="news.title"
+        [class.err]="
+          newsForm.controls.title.invalid && newsForm.controls.title.touched
+        "
+      />
+      <p
+        *ngIf="
+          newsForm.controls.title.invalid && newsForm.controls.title.touched
+        "
+        class="error-message"
+      >
+        * Title is required.
+      </p>
+    </div>
+    <div class="form-group">
+      <ngx-wig
+        [buttons]="'bold, italic, link'"
+        [placeholder]="'Enter your content here.'"
+        [(ngModel)]="news.content"
+        formControlName="content"
+        class="input"
+      >
+      </ngx-wig>
+      <p
+        class="error-message"
+        *ngIf="
+          newsForm.controls.content.invalid && newsForm.controls.content.touched
+        "
+      >
+        * Content is required.
+      </p>
+    </div>
+    <div class="form-group">
+      <input
+        ng2FileSelect
+        [uploader]="uploader"
+        type="file"
+        (change)="handleFileSelection($event)"
+        class=""
+      />
+    </div>
+    <div id="progress" *ngIf="isUploading">
+      <circle-progress
+        [percent]="progress"
+        [radius]="40"
+        [outerStrokeWidth]="8"
+        [innerStrokeWidth]="4"
+        [outerStrokeColor]="'#78C000'"
+        [innerStrokeColor]="'#C7E596'"
+        [animation]="true"
+        [animationDuration]="300"
+        [titleFontSize]="20"
+      ></circle-progress>
+    </div>
+    <div class="form-group" id="news-upload-btn">
+      <input
+        type="button"
+        (click)="onCreateNews()"
+        class="main-btn"
+        value="Create"
+      />
+      <button class="outline-btn" (click)="ShowNewsList()">Back</button>
+    </div>
+  </div>
+</form>

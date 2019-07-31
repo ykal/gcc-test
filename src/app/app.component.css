@@ -1,0 +1,136 @@
+.footer-sponsors-logo {
+  margin-bottom: 2em;
+}
+
+.footer-sponsors-logo img {
+  width: 100%;
+}
+
+.footer-sponsors-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.sponsor-logo {
+  float: left;
+}
+
+#sponsor-container {
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*align-items: center;*/
+}
+
+ul.dropdown1 {
+  background: #b9638e;
+  padding: 1.5em;
+}
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  .footer-sponsors-logo img {
+    width: 50%;
+  }
+
+  .sponsor-container {
+    display: flex;
+    padding-left: 6em;
+  }
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .footer-sponsors-logo img {
+    width: 50%;
+  }
+  .sponsor-container {
+    display: flex;
+    padding-left: 6em;
+  }
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .footer-sponsors-logo img {
+    width: 40%;
+  }
+  .sponsor-container {
+    display: flex;
+    padding-left: 6em;
+  }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .footer-sponsors-logo img {
+    width: 20%;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 1em;
+  }
+  .sponsor-container {
+    display: block;
+    padding-left: 6em;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .footer-sponsors-logo img {
+    width: 20%;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 1em;
+  }
+}
+
+.sponsor-container {
+  margin-bottom: 2em;
+  display: block;
+}
+
+.footer-logo > h5 {
+  color: #fff;
+  padding: 1em;
+  font-size: 1.7em;
+  border-bottom: 1px solid #e3e3e3;
+  width: fit-content;
+  margin: auto;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

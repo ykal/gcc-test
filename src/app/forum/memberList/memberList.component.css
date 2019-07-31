@@ -1,0 +1,30 @@
+#user-icon {
+  float: left;
+  margin-right: 1em;
+}
+
+#item {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+#item:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+table {
+  width: 40%;
+}
+
+@media screen and (max-width: 400px) {
+  table {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 401px) and (max-width: 720px) {
+  table {
+    width: 100%;
+  }
+}

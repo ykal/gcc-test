@@ -1,0 +1,15 @@
+<app-competition-list (viewCompetition)="onViewCompetition($event)" (edit)="onEdit($event)"
+                      [backupCompetitions]="competitions" [competitions]="competitions"
+                      *ngIf="currentView == views[0]"></app-competition-list>
+<app-competition-create (created)="onCreated()" *ngIf="currentView == views[0]"></app-competition-create>
+<app-edit-competition (updated)="onUpdated()" [competition]="competitionToEdit"></app-edit-competition>
+<app-competition-projects [competition]="selectedCompetition" *ngIf="currentView == views[1]"></app-competition-projects>
+<ngx-spinner
+  bdColor = "rgba(51, 51, 51, 0.8)"
+  size = "medium"
+  color = "#b9638e"
+  type = "ball-triangle-path"
+>
+  <p style="font-size: 20px; color: white">Loading ...</p>
+
+</ngx-spinner>

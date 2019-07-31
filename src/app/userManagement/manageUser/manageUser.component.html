@@ -1,0 +1,6 @@
+<div class="row">
+    <div class="col-sm-10">
+        <app-add-user (created)="toggleView('user-list')" (back)="toggleView('user-list')" *ngIf="selected == 'add-user'"></app-add-user>
+        <app-user-list (create)="toggleView('add-user')" *ngIf="selected == 'user-list'"></app-user-list>
+    </div>
+</div>

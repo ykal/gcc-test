@@ -1,0 +1,59 @@
+.events-list-header {
+  margin-top: 3.5em;
+}
+
+.header h4 {
+  float: left;
+  margin-right: 4em;
+  padding: 2px;
+}
+
+.header button {
+  float: left;
+}
+
+#project-list-header {
+  margin-bottom: 2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header h4 {
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  padding-right: 2em;
+  cursor: pointer;
+}
+
+.widget {
+  margin: 0.5em;
+}
+
+select {
+  background: #fafafa;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 1em 3em;
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  select {
+    margin-left: 2em;
+    margin-top: -1em;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  select {
+    margin-left: 2em;
+    margin-top: -1em;
+  }
+}

@@ -1,0 +1,65 @@
+#registration-form {
+    width: 90%;
+    padding: 6em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    margin: 5% auto 10%;
+}
+
+form {
+    width: 90%;
+    margin: auto;
+}
+
+input {
+    background: #ffffff;
+    border-bottom: 2px solid #EEE;
+}
+
+.input-field {
+    margin-bottom: 1em;
+}
+
+.login-link {
+    margin-top: 2em;
+}
+
+.login-link p {
+    text-align: center;
+}
+
+select {
+  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5em;
+  width: 100%;
+}
+
+.error-message p {
+    font-size: 0.7em;
+    text-align: center;
+    color: #EC4643;
+}
+
+.err {
+    border-color: #EC4643
+}
+
+h4 {
+    text-align: center;
+}
+img {
+  width: 7em;
+}
+
+.form-title {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.title:after {
+  margin: 20px auto
+}

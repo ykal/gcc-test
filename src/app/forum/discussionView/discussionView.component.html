@@ -1,0 +1,131 @@
+<app-header></app-header>
+<div class="container">
+  <div id="blog" class="section">
+    <!-- Main -->
+    <main id="main" *ngIf="discussion.id !== 0">
+      <div class="blog">
+        <div class="blog-content">
+          <h5>{{ discussion.title }}</h5>
+          <div class="pin" *ngIf="authService.isAuthenticated()">
+            <i
+              *ngIf="isFavorite(discussion)"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Remove from favorites"
+              (click)="removeFromFavorites()"
+              class="fa fa-heart"
+            ></i>
+            <i
+              *ngIf="!isFavorite(discussion)"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Add to favorites"
+              (click)="addToFavorites()"
+              class="fa fa-heart-o"
+            ></i>
+          </div>
+          <div class="pin" *ngIf="authService.isAuthenticated()">
+            <i
+              *ngIf="isBlackListed"
+              (click)="removeFromBlackList(discussion.id)"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Remove from blacklist"
+              class="fa fa-flag"
+              style="color: #EC4643;"
+            ></i>
+            <i
+              *ngIf="!isBlackListed"
+              (click)="blackList(discussion.id)"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Make blacklist"
+              class="fa fa-flag-o"
+            ></i>
+          </div>
+          <div class="pin" *ngIf="isDiscussionOwner(postedBy.username)">
+            <i
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Edit"
+              (click)="onEdit()"
+              class="fa fa-edit"
+            ></i>
+          </div>
+          <ul class="blog-meta">
+            <li><i class="fa fa-user"></i> {{ postedBy.username }}</li>
+            <li>
+              <i class="fa fa-clock-o"></i
+              >{{ discussion.createdAt | amTimeAgo }}
+            </li>
+            <li><i class="fa fa-comments"></i>{{ numberOfComments }}</li>
+          </ul>
+          <hr />
+          <div class="content" [innerHTML]="discussion.content"></div>
+          <div class="content" *ngIf="discussion.imgContent.name">
+            <img
+              class="discussionImg"
+              [src]="getImageSource(discussion.imgContent.name)"
+              alt=""
+            />
+          </div>
+          <hr />
+          <!-- blog tags -->
+          <div class="blog-tags" *ngIf="tags.length > 0">
+            <a *ngFor="let tag of tags"
+              ><i class="fa fa-tag"></i>{{ tag.name }}</a
+            >
+          </div>
+          <!-- blog tags -->
+        </div>
+        <app-comment-list
+          *ngIf="discussion.id !== 0"
+          [comments]="comments"
+          [isOwnerOfDiscussion]="isOwnerOfDiscussion()"
+        ></app-comment-list>
+        <!-- reply form -->
+        <div class="reply-form">
+          <h5 class="title" *ngIf="authService.isAuthenticated()">
+            Leave a comment
+          </h5>
+          <h6 class="title" *ngIf="!authService.isAuthenticated()">
+            Please sign in to post a comment.
+            <span id="link" (click)="onSignIn()">here</span>
+          </h6>
+          <form [formGroup]="commentForm" *ngIf="authService.isAuthenticated()">
+            <textarea
+              style="height: 10em;"
+              placeholder="Add Your Comment"
+              formControlName="content"
+              [rows]="30"
+              [(ngModel)]="comment.content"
+            ></textarea>
+            <button
+              [disabled]="!commentForm.valid"
+              type="submit"
+              class="main-btn"
+              (click)="addComment()"
+            >
+              Comment
+              <span *ngIf="isPostingCommentLoading"
+                ><i id="spinner" class="fa fa-spinner fa-spin"></i
+              ></span>
+            </button>
+          </form>
+        </div>
+        <!-- /reply form -->
+      </div>
+    </main>
+    <!-- /Main -->
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="medium"
+  color="#b9638e"
+  type="ball-triangle-path"
+>
+  <p style="font-size: 20px; color: white">Loading ...</p>
+</ngx-spinner>

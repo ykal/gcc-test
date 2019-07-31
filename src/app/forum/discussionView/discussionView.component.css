@@ -1,0 +1,55 @@
+h5 {
+  float: left;
+}
+
+.pin {
+  float: left;
+  margin-left: 2em;
+}
+
+i {
+  font-size: 1em;
+  color: #b9638e;
+  cursor: pointer;
+}
+
+#content {
+  clear: both;
+}
+
+#link {
+  text-decoration: underline;
+  color: #b9638e;
+  cursor: pointer;
+}
+
+#main {
+  margin: 2em auto  3em;
+}
+
+#main .blog {
+  width: 70%;
+  margin: auto;
+}
+
+#content {
+  text-align: justify;
+}
+
+.blog-meta {
+  clear: both;
+}
+
+.blog-tags a {
+  border: 1px solid white;
+}
+
+.discussionImg {
+  width: 50%;
+  margin-top: 1em;
+}
+
+#spinner {
+  margin-left: .5em;
+  color: #ffffff;
+}

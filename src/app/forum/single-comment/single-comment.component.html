@@ -1,0 +1,97 @@
+<!-- comment -->
+<div class="media" *ngIf="comment">
+  <div class="media-left">
+    <img
+      class="media-object"
+      id="commenter-avatar"
+      src="../../../assets/img/User_Circle.png"
+      alt=""
+    />
+  </div>
+  <div class="media-body">
+    <h6 class="media-heading">
+      {{ comment.user.username }}
+      <span class="time">{{ comment.createdAt | amTimeAgo }}</span>
+      <a
+        class="reply remove"
+        *ngIf="isOwnerOfDiscussion"
+        data-toggle="modal"
+        data-target="#myModal"
+        >Remove<i class="fa fa-trash"></i
+      ></a>
+      <a (click)="toggleReplyForm()" class="reply"
+        >{{ replies.length }}&nbsp;Replies<i class="fa fa-reply"></i
+      ></a>
+    </h6>
+    <div class="" [innerHtml]="formatComment(comment.content)"></div>
+  </div>
+  <div class="comment-replies" *ngIf="isReplyActive">
+    <div class="comment-reply" *ngFor="let reply of replies">
+      <div class="media-left">
+        <img
+          class="media-object"
+          id="commenter-avatar"
+          src="../../../assets/img/User_Circle.png"
+          alt=""
+        />
+      </div>
+      <div class="media-body">
+        <h6 class="media-heading">
+          {{ reply.user.username }}
+          <span class="time">{{ reply.createdAt | amTimeAgo }}</span>
+        </h6>
+        <div class="" [innerHtml]="formatComment(reply.content)"></div>
+      </div>
+    </div>
+    <!-- reply form -->
+    <div class="reply-form">
+      <h6 class="title">Leave a reply</h6>
+      <form [formGroup]="replyForm" *ngIf="authService.isAuthenticated()">
+        <textarea
+          style="height: 10em"
+          formControlName="content"
+          [(ngModel)]="reply.content"
+          placeholder="Add Your Reply"
+        ></textarea>
+        <button type="submit" class="main-btn" (click)="replyToComment()">
+          Reply
+          <span *ngIf="isPostingReplyLoading"
+            ><i id="spinner" class="fa fa-spinner fa-spin"></i
+          ></span>
+        </button>
+      </form>
+    </div>
+    <!-- /reply form -->
+  </div>
+</div>
+<!-- /comment -->
+
+<!-- Confirmation Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body"><p>Are you sure to remove this comment ?</p></div>
+      <div class="modal-footer">
+        <button
+          (click)="removeComment(comment)"
+          type="button"
+          class="btn main-btn"
+          data-dismiss="modal"
+        >
+          Yes
+        </button>
+        <button type="button" class="btn outline-btn" data-dismiss="modal">
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Confirmation Modal -->

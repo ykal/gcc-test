@@ -1,0 +1,48 @@
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<div id="editCompetition" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Competition</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="competitionForm" *ngIf="competition !== null">
+          <div class="input-field">
+            <input class="input " type="text" name="name" formControlName="name" placeholder="Competition Name" [(ngModel)]="competition.name"
+                   [class.err]="competitionForm.controls.name.invalid && competitionForm.controls.name.touched">
+            <div class="error-message" *ngIf="competitionForm.controls.name.invalid && competitionForm.controls.name.touched">
+              <p>* Competition Name is required.</p>
+            </div>
+          </div>
+          <div class="input-field">
+            <ng-multiselect-dropdown [placeholder]="'Cities'" [data]="mapCitiesToDropDownList(cities)" formControlName="cities"
+                                     (onDeSelectAll)="onDeselectAll($event)" (onSelectAll)="onSelectAll($event)"
+                                     (onSelect)="onItemSelected($event)" (onDeSelect)="onItemDeselected($event)"
+                                     [settings]="dropdownSettings" [ngModel]="populateSelectedCities(competition.cities)">
+            </ng-multiselect-dropdown>
+            <div class="error-message" *ngIf="competitionForm.controls.cities.invalid &&
+                                                              competitionForm.controls.cities.touched">
+              <p>* This field is required.</p>
+            </div>
+          </div>
+          <div class="input-field">
+            <label for="start-date">Starting Date</label>
+            <input class="input" type="date" name="start_date" id="start-date" formControlName="startingDate" placeholder="Start Date"
+                   [ngModel]="competition.startingDate | date:'yyyy-MM-dd'" (ngModelChange)="competition.startingDate = $event"
+                   [class.err]="competitionForm.controls.startingDate.invalid && competitionForm.controls.startingDate.touched">
+            <div class="error-message" *ngIf="competitionForm.controls.startingDate.invalid && competitionForm.controls.startingDate.touched  ">
+              <p>* Start Date is required.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="updateCompetition()" class="btn main-btn">Update</button>
+        <button type="button" class="btn outline-btn" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

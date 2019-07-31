@@ -1,0 +1,20 @@
+.create {
+  margin-left: 1em;
+  padding: 0.3em 2em;
+}
+
+.no-resource-found {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  width: 90%;
+  margin: auto auto 8em auto;
+}
+
+.competetion-list {
+  margin-bottom: 4em;
+}
+.container {
+  margin-bottom: 3em;
+}

@@ -1,0 +1,43 @@
+#projects-list-content {
+  margin: 3em auto 3em;
+}
+
+.projects-pagination {
+  margin: 4em auto 2em;
+}
+
+.no-resource-found {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  width: 50%;
+  margin: 10em auto;
+}
+
+#projects-list-content > div:nth-child(2) > div:nth-child(1) > div > a {
+  cursor: pointer;
+}
+
+.info {
+  padding: 1em;
+  background: rgba(227, 227, 227, 0.55);
+}
+
+.info span {
+  color: #b9638e;
+  margin-right: 1em;
+}
+
+.info p {
+  text-align: justify;
+}
+
+.modal-header {
+  background: #4267b2;
+}
+
+.modal-header h5,
+#times {
+  color: white;
+}

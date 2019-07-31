@@ -1,0 +1,43 @@
+<div class="row">
+  <br>
+</div>
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Project Members</h3>
+        </div>
+        <div class="panel-body">
+            <div *ngIf = "members.length > 0" class="list-group">
+                <div  *ngFor = "let member of members | paginate: { itemsPerPage: 20, currentPage: page }" class="list-group-item">
+                    <a (click)="showUserProfile(member)"> {{ member.username }}</a>
+                    <span (click)="toggleModal(member)" class="span" *ngIf="members.length > 1 && (authService.isAdmin() || authService.isSolveitManager()) ">
+                     <i class="fa fa-remove"></i>
+                    </span>
+                </div>
+            </div>
+            <pagination-controls *ngIf = "members.length > 20" (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+  
+  <!-- Modal -->
+  <div  class="modal fade" id="removeMemberModal" tabindex="-1" role="dialog" aria-labelledby="removeMemberModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="memberToRemove !== null">
+          Are you sure you want to remove {{memberToRemove.firstName + " " + memberToRemove.middleName}} ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button *ngIf="memberToRemove !== null" type="button" (click)="removeMember(memberToRemove)" class="btn btn-primary">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>

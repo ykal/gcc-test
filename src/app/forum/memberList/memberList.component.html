@@ -1,0 +1,17 @@
+<div class="forum-members">
+  <h4 class="title">Members</h4>
+    <div class="row">
+        <br>
+    </div>
+
+  <table class="table" *ngIf="members.length > 0">
+    <tbody>
+    <tr *ngFor="let member of members | paginate: { itemsPerPage: 20, currentPage: page }">
+      <th id="item" scope="row">
+        <i id="user-icon" class="fa fa-user-circle"></i> <p style="float: left;">{{ member.username }}</p>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls *ngIf = "members.length > 20" (pageChange)="page = $event"></pagination-controls>
+</div>

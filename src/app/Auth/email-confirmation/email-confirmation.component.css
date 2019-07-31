@@ -1,0 +1,22 @@
+.confirmation {
+  margin: 17em auto;
+}
+
+#info {
+  text-align: center;
+  font-size: 2em;
+}
+
+i {
+  font-size: 3em;
+}
+
+#link {
+  text-align: center;
+
+}
+
+#link a {
+  text-decoration: underline;
+  padding: 1em;
+}

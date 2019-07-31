@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <form [formGroup]="reportForm">
+      <h4 id="form-title">Upload Progress Report</h4>
+      <div id="report-form">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="Report Title"
+            formControlName="title"
+            [(ngModel)]="report.title"
+          />
+        </div>
+        <div class="form-group">
+          <select
+            class="form-control"
+            name="type"
+            class="form-control"
+            id="type"
+            [(ngModel)]="report.type"
+            formControlName="type"
+          >
+            <option value="" selected>Report Type</option>
+            <option *ngFor="let type of types" [value]="type.id">{{
+              type.name
+            }}</option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="report.type == types[1].id">
+          <textarea
+            class="form-control"
+            placeholder="Progress Report Detail"
+            formControlName="report"
+            [(ngModel)]="report.report"
+          >
+          </textarea>
+        </div>
+        <div class="form-group" *ngIf="report.type == types[0].id">
+          <label id="proposal-label" for="proposal">Project Proposal</label>
+          <input
+            id="proposal"
+            type="file"
+            ng2FileSelect
+            [uploader]="uploader"
+            (change)="handleFileSelection($event)"
+          />
+        </div>
+        <div id="progress" *ngIf="isUploading">
+          <circle-progress
+            [percent]="progress"
+            [radius]="40"
+            [outerStrokeWidth]="8"
+            [innerStrokeWidth]="4"
+            [outerStrokeColor]="'#78C000'"
+            [innerStrokeColor]="'#C7E596'"
+            [animation]="true"
+            [animationDuration]="300"
+            [titleFontSize]="20"
+          >
+          </circle-progress>
+        </div>
+        <div class="form-group" id="resource-upload-btn">
+          <input
+            type="button"
+            (click)="uploadProgressReport()"
+            class="main-btn"
+            value="Submit"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

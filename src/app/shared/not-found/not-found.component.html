@@ -1,0 +1,13 @@
+<div class="content-container">
+  <img
+    *ngIf="type === 'fetch'"
+    src="../../../assets/img/empty.svg"
+    alt="Not found"
+  />
+  <img
+    *ngIf="type === 'search'"
+    src="../../../assets/img/search.svg"
+    alt="Not found"
+  />
+  <p>{{ message }}</p>
+</div>

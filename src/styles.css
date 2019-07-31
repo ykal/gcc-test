@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+th,
+td {
+    border: none;
+    border-bottom: 1px solid #ddd;
+}

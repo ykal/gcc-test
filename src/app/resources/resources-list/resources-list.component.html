@@ -1,0 +1,309 @@
+<app-header></app-header>
+
+<!-- Search bar and filters -->
+<div class="container">
+  <div id="searchbar" class="row" *ngIf="resources.length > 0">
+    <div class="col-md-4">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search"
+        [(ngModel)]="keyword"
+        (keyup)="onSearch($event)"
+      />
+    </div>
+    <div class="col-md-2" *ngIf="resources.length > 0">
+      <select
+        name="category"
+        class="form-control"
+        id="category"
+        [(ngModel)]="filterCategory"
+        (change)="filterResource($event)"
+      >
+        <option value="" selected>Filter by category</option>
+        <option value="" selected>All</option>
+        <option
+          *ngFor="let category of categories"
+          [value]="category.category"
+          >{{ category.category }}</option
+        >
+      </select>
+    </div>
+    <div
+      class="col-md-offset-1 col-md-2"
+      id="upload-btn-container"
+      *ngIf="
+        (authService.isSolveitTeam() ||
+          authService.isSolveitManager() ||
+          authService.isAdmin()) &&
+        resources.length > 0
+      "
+    >
+      <button id="upload-btn" class="outline-btn" (click)="uploadResource()">
+        <i class="fa fa-upload"></i> Upload
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div id="about" class="section md-padding">
+    <!-- Documents -->
+    <div class="container">
+      <!-- Row -->
+      <div class="row">
+        <!-- Section header -->
+        <div><p id="resource-list-title" class="title">Documents</p></div>
+        <!-- /Section header -->
+
+        <div class="row">
+          <div [class.col-md-8]="showDetail" [class.col-md-12]="!showDetail">
+            <div
+              class="no-resource-found"
+              *ngIf="
+                (backUpDocResources.length === 0 && keyword === '') ||
+                (doc_resources.length === 0 && filterCategory !== '')
+              "
+            >
+              <app-not-found
+                message="No document resource uploaded, yet."
+                type="fetch"
+              ></app-not-found>
+              <i
+                *ngIf="
+                  authService.isSolveitTeam() ||
+                  authService.isSolveitManager() ||
+                  (authService.isAdmin() && resources.length === 0)
+                "
+                class="link"
+                (click)="uploadResource()"
+                >create here.</i
+              >
+            </div>
+            <div
+              class="no-resource-found"
+              *ngIf="doc_resources.length === 0 && keyword !== ''"
+            >
+              <app-not-found
+                message="Document resource '{{ keyword }}' not
+              found."
+                type="search"
+              ></app-not-found>
+            </div>
+            <div
+              id="file-container"
+              [class.col-md-3]="showDetail"
+              [class.col-sm-3]="showDetail"
+              [class.col-md-2]="!showDetail"
+              [class.col-sm-2]="!showDetail"
+              *ngFor="
+                let resource of (doc_resources
+                  | paginate
+                    : {
+                        id: 'docs',
+                        itemsPerPage: 10,
+                        currentPage: docResourcePage
+                      })
+              "
+            >
+              <div id="resource" (click)="viewResourceDetail(resource)">
+                <img
+                  class="image"
+                  src="../../../assets/img/pdfCover.jpg"
+                  alt="book cover"
+                />
+                <div class="info">
+                  <p>{{ resource.createdAt | amTimeAgo }}</p>
+                  <h5 class="title">
+                    {{ getLimittedTitle(resource.title, 12) }}
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <div
+              class="row pagination-container"
+              *ngIf="doc_resources.length > 10"
+            >
+              <div class="pagination">
+                <pagination-controls
+                  id="docs"
+                  responsive="true"
+                  *ngIf="doc_resources.length > 10"
+                  (pageChange)="docResourcePage = $event"
+                ></pagination-controls>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" *ngIf="showDetail">
+            <div class="resource-detail">
+              <i class="fa fa-close close" (click)="cancelResourceDetail()"></i>
+              <i
+                *ngIf="
+                  authService.isAdmin() ||
+                  authService.isSolveitManager() ||
+                  authService.isSolveitTeam()
+                "
+                class="fa fa-trash close"
+                data-toggle="modal"
+                data-target="#deleteConfirmation"
+              ></i>
+              <i
+                *ngIf="
+                  authService.isAdmin() ||
+                  authService.isSolveitManager() ||
+                  authService.isSolveitTeam()
+                "
+                (click)="editResource(selectedResource)"
+                class="fa fa-pencil close"
+              ></i>
+
+              <img
+                class="resource-detail-img"
+                src="../../../assets/img/pdfCover.jpg"
+                alt="book cover"
+              />
+              <p>{{ selectedResource.createdAt | amTimeAgo }}</p>
+              <h4 class="title">{{ selectedResource.title }}</h4>
+              <p>{{ selectedResource.description }}</p>
+              <div class="row">
+                <div class="col-sm-offset-3 col-sm-4">
+                  <button
+                    class="main-btn download-button"
+                    (click)="downloadResource(selectedResource.content)"
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Row -->
+    </div>
+    <!-- /Documents -->
+  </div>
+
+  <!-- Videos -->
+  <div id="videos" class="section md-padding">
+    <!-- Container -->
+    <div class="container">
+      <!-- Row -->
+      <div class="row">
+        <!-- Section header -->
+        <div><p id="resource-list-title" class="title">Videos</p></div>
+        <!-- /Section header -->
+
+        <div
+          class="no-resource-found"
+          *ngIf="
+            (backUpVidResources.length === 0 && keyword === '') ||
+            (vid_resources.length === 0 && filterCategory !== '')
+          "
+        >
+          <app-not-found
+            message="No video resource uploaded, yet."
+          ></app-not-found>
+          <i
+            *ngIf="
+              (authService.isSolveitTeam() ||
+                authService.isSolveitManager() ||
+                authService.isAdmin()) &&
+              resources.length === 0
+            "
+            class="link"
+            (click)="uploadResource()"
+            >create here.</i
+          >
+        </div>
+
+        <div
+          class="no-resource-found"
+          *ngIf="vid_resources.length === 0 && keyword !== ''"
+        >
+          <app-not-found
+            message="Video resource '{{ keyword }}'' not found."
+            type="search"
+          ></app-not-found>
+        </div>
+
+        <div
+          class="col-md-3 col-sm-2"
+          *ngFor="
+            let resource of (vid_resources
+              | paginate
+                : { id: 'vids', itemsPerPage: 8, currentPage: vidResourcePage })
+          "
+        >
+          <div
+            class="video-resource"
+            data-toggle="modal"
+            data-target="#myModal"
+          >
+            <img
+              [src]="getVideoThumbinal(resource.url)"
+              (click)="onChoosingVideoResource(resource)"
+              alt="video thumbinal"
+            />
+            <div class="info">
+              <p (click)="onChoosingVideoResource(resource)">
+                {{ resource.createdAt | amTimeAgo }}
+              </p>
+              <h6 (click)="onChoosingVideoResource(resource)" class="title">
+                {{ getLimittedTitle(resource.title, 28) }}
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div class="pagination">
+          <pagination-controls
+            responsive="true"
+            id="vids"
+            *ngIf="vid_resources.length > 8"
+            (pageChange)="vidResourcePage = $event"
+          ></pagination-controls>
+        </div>
+      </div>
+      <!-- /Row -->
+    </div>
+    <!-- /Container -->
+  </div>
+  <!-- /Videos -->
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+
+<app-modal
+  (edit)="onEditVideo($event)"
+  (delete)="deleteResource(choosenResource)"
+  [resource]="choosenResource"
+></app-modal>
+
+<div id="deleteConfirmation" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div *ngIf="selectedResource" class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to delete {{ selectedResource.title }} ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="cancel()" class="btn btn-secondary">
+          Cancel
+        </button>
+        <button
+          type="button"
+          (click)="deleteResource(selectedResource)"
+          class="btn btn-primary"
+          data-dismiss="modal"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

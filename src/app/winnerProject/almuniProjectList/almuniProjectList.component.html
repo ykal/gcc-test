@@ -1,0 +1,43 @@
+<div class="forum-list">
+  <div class="forums-list-content">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Competition</th>
+          <th scope="col">Project</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let almuni of (almuniProjects
+              | paginate: { itemsPerPage: 10, currentPage: page });
+            let i = index
+          "
+        >
+          <th scope="row">{{ almuni.competition.name }}</th>
+          <td>{{ almuni.solveitproject.title }}</td>
+          <td>
+            <span *ngIf="!almuni.active">INACTIVE</span>
+            <button
+              *ngIf="almuni.active"
+              (click)="removeAlmuniProjectLabel(almuni)"
+              type="button"
+              class="btn btn-danger"
+            >
+              Deactivate
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="forum-pagination">
+    <pagination-controls
+      *ngIf="almuniProjects.length > 10"
+      (pageChange)="currentPage = $event"
+    ></pagination-controls>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

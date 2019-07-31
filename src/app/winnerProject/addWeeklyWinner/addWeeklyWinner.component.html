@@ -1,0 +1,83 @@
+<form [formGroup]="weeklyWinnerForm" *ngIf="authService.isAuthenticated()">
+  <h4 class="title" id="form-title">Add Weekly Winner</h4>
+  <div id="resource-form">
+    <div id="input-field">
+      <input type="text" class="form-control" name="title" placeholder="Week Name" formControlName="week"
+        [(ngModel)]="weeklyWinner.week" />
+      <div class="error-message" *ngIf="
+          weeklyWinnerForm.controls.week.invalid &&
+          weeklyWinnerForm.controls.week.touched
+        ">
+        <p>* Week is required.</p>
+      </div>
+    </div>
+    <div class="input-field" style="margin-top: 1em">
+      <select class="form-control" name="competitionId" id="competitionId" [(ngModel)]="weeklyWinner.competitionId"
+        formControlName="competition">
+        <option value="" [selected]="true">Select Competition</option>
+        <option *ngFor="let competition of competitions" value="{{competition.id}}">{{ competition.name }}</option>
+      </select>
+      <div class="error-message" *ngIf="
+          weeklyWinnerForm.controls.competition.invalid &&
+          weeklyWinnerForm.controls.competition.touched
+        ">
+        <p>* Competition is required.</p>
+      </div>
+    </div>
+    <div class="input-field" style="margin-top: 1em">
+      <select class="form-control" name="rank" id="rank" [(ngModel)]="weeklyWinner.rank" formControlName="rank">
+        <option selected value="" [selected]="true">Select Rank</option>
+        <option value="Gold">Gold</option>
+        <option value="Silver">Silver</option>
+        <option value="Bronze">Bronze</option>
+      </select>
+      <div class="error-message" *ngIf="
+          weeklyWinnerForm.controls.rank.invalid &&
+          weeklyWinnerForm.controls.rank.touched
+        ">
+        <p>* Rank is required.</p>
+      </div>
+    </div>
+
+    <div class="input-field" style="margin-top: 1em">
+      <select class="form-control" name="city" id="city" [(ngModel)]="weeklyWinner.city"
+        (change)="filterProjectByCity()" formControlName="city">
+        <option selected value="All" [selected]="true">Select City</option>
+        <ng-container *ngFor="let city of cities">
+          <option *ngIf="city" value="{{city.id}}">
+            {{ city.name }}
+          </option>
+        </ng-container>
+      </select>
+      <div class="error-message" *ngIf="
+          weeklyWinnerForm.controls.city.invalid &&
+          weeklyWinnerForm.controls.city.touched
+        ">
+        <p>* City is required.</p>
+      </div>
+    </div>
+
+    <div class="input-field" style="margin-top: 1em">
+      <select class="form-control" name="project" id="project" [(ngModel)]="weeklyWinner.projectId"
+        formControlName="project">
+        <option selected value="" [selected]="true">Select Project</option>
+        <ng-container *ngFor="let project of projects">
+          <option *ngIf="project.solveitproject" value="{{project.solveitproject.id}}">
+            {{ project.solveitproject.title }}
+          </option>
+        </ng-container>
+      </select>
+      <div class="error-message" *ngIf="
+          weeklyWinnerForm.controls.project.invalid &&
+          weeklyWinnerForm.controls.project.touched
+        ">
+        <p>* Project is required.</p>
+      </div>
+    </div>
+
+    <div class="form-group" id="resource-upload-btn">
+      <input type="button" (click)="addWeeklyWinner()" class="main-btn" value="Create" />
+    </div>
+  </div>
+</form>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

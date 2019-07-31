@@ -1,0 +1,165 @@
+<div class="address-form">
+  <form [formGroup]="addressForm">
+    <div class="section-header text-center">
+      <img src="../../../assets/img/solveit-logo12.png" alt="" />
+    </div>
+    <h3 class="title">Personal Address</h3>
+    <div class="input-field">
+      <select
+        class="form-control"
+        name="region"
+        id="region"
+        formControlName="region"
+        [(ngModel)]="address.regionId"
+        (change)="onRegionChange()"
+      >
+        <option value="">Select Your Region</option>
+        <option *ngFor="let region of regions" value="{{region.id}}">{{
+          region.name.toUpperCase()
+        }}</option>
+      </select>
+      <div
+        class="error-message"
+        *ngIf="
+          addressForm.controls.region.invalid &&
+          addressForm.controls.region.touched
+        "
+      >
+        <p>* Region is required.</p>
+      </div>
+      <div
+        class="form-control"
+        class="error-message"
+        *ngIf="cities.length == 0 && addressForm.controls.region.touched"
+      >
+        <p>* Registration is over for this region.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <select
+        class="form-control"
+        name="city"
+        id="city"
+        formControlName="city"
+        [(ngModel)]="address.cityId"
+        (change)="onCityChange()"
+      >
+        <option value="">Select Your City</option>
+        <option *ngFor="let city of cities" value="{{city.id}}">{{
+          city.name.toUpperCase()
+        }}</option>
+      </select>
+      <div
+        class="error-message"
+        *ngIf="
+          addressForm.controls.city.invalid && addressForm.controls.city.touched
+        "
+      >
+        <p>* City is required.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input
+        type="text"
+        class="form-control"
+        name="Woreda"
+        placeholder="Woreda/Kebele"
+        formControlName="wereda"
+        [(ngModel)]="address.wereda"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          addressForm.controls.wereda.invalid &&
+          addressForm.controls.wereda.touched
+        "
+      >
+        <p>* Woreda/Kebele is required.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input
+        type="text"
+        class="form-control"
+        name="houseNo"
+        placeholder="House Number"
+        formControlName="houseNo"
+        [(ngModel)]="address.houseNo"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          addressForm.controls.houseNo.invalid &&
+          addressForm.controls.houseNo.touched
+        "
+      >
+        <p>* House Number is required.</p>
+      </div>
+    </div>
+    <h3 class="title">Emergecy Address</h3>
+    <div class="input-field">
+      <input
+        type="text"
+        name="emergency-fullname"
+        placeholder="Contact Full Name"
+        formControlName="fullName"
+        class="form-control"
+        [(ngModel)]="address.emergencyContact.fullName"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          addressForm.controls.fullName.invalid &&
+          addressForm.controls.fullName.touched
+        "
+      >
+        <p>* Emergency Name is required.</p>
+      </div>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><b>+251</b></span>
+      <input
+        type="tel"
+        name="emergency-phoneNumber"
+        placeholder="Phone Number"
+        class="form-control"
+        formControlName="phoneNumber"
+        [(ngModel)]="address.emergencyContact.phoneNumber"
+      />
+    </div>
+    <div
+      class="error-message"
+      *ngIf="
+        addressForm.controls.phoneNumber.touched &&
+        addressForm.controls.phoneNumber.errors?.required
+      "
+    >
+      <p>* Emergency Phone Number is required</p>
+    </div>
+    <div
+      class="error-message"
+      *ngIf="
+        addressForm.controls.phoneNumber.touched &&
+        addressForm.controls.phoneNumber.errors?.incorrect
+      "
+    >
+      <p>* Incorrect phone number.</p>
+      <p>* e.g 9xxxxxxxx</p>
+    </div>
+    <div class="register-btn">
+      <div class="row">
+        <div class="col-md-6">
+          <button (click)="onBack()" type="button" id="" class="main-btn">
+            Back
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button (click)="onDone()" type="button" id="" class="main-btn">
+            Done
+            <span *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

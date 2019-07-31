@@ -1,0 +1,29 @@
+img {
+  width: 100%;
+}
+
+.sponsor-img {
+  width: 70%;
+  margin: auto;
+  padding: 2em;
+}
+
+.cube {
+  margin-bottom: 1em;
+  border: 10px solid #ffffff;
+  border-radius: 100em;
+  box-shadow: 0px 3px 20px 3px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  margin: 4em auto;
+}
+
+.row {
+  margin-top: 2em;
+}
+
+.sponsor-name {
+  text-align: center;
+  font-weight: bold;
+}

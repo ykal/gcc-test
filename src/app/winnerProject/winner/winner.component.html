@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<div class="container top-projects">
+  <div class="row">
+    <div class="col-md-4">
+      <ul class="top-projects-menu">
+        <li (click)="toggleView('winner-list-weekly')" class="top-projects-menu-item"
+          [class.top-projects-menu-item-selected]="
+            'winner-list-weekly' === selected
+          ">
+          <span class="icon"><i class="fa fa-users"></i></span> Week Top's
+        </li>
+        <li (click)="toggleView('winner-list-competition')" class="top-projects-menu-item"
+          [class.top-projects-menu-item-selected]="
+            'winner-list-competition' === selected
+          ">
+          <span class="icon"><i class="fa fa-users"></i></span> Winners
+        </li>
+        <li (click)="toggleView('add-weekly-winner')" class="top-projects-menu-item"
+          [class.top-projects-menu-item-selected]="
+            'add-weekly-winner' === selected
+          ">
+          <span class="icon"><i class="fa fa-users"></i></span> Add Week Top's
+        </li>
+        <li (click)="toggleView('add-competition-winner')" class="top-projects-menu-item"
+          [class.top-projects-menu-item-selected]="
+            'add-competition-winner' === selected
+          ">
+          <span class="icon"><i class="fa fa-users"></i></span> Add Winners
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <app-weekly-winner-list *ngIf="selected == 'winner-list-weekly'"></app-weekly-winner-list>
+      <app-competition-winner-list *ngIf="selected == 'winner-list-competition'"></app-competition-winner-list>
+      <app-add-weekly-winner *ngIf="selected == 'add-weekly-winner'"></app-add-weekly-winner>
+      <app-add-competition-winner *ngIf="selected == 'add-competition-winner'"></app-add-competition-winner>
+    </div>
+  </div>
+</div>

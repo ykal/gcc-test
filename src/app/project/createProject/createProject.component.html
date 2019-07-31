@@ -1,0 +1,122 @@
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<div id="createProjectModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          (click)="reset()"
+          class="close"
+          data-dismiss="modal"
+        >
+          &times;
+        </button>
+        <h4 class="modal-title" *ngIf="!isEdit">New Project</h4>
+        <h4 class="modal-title" *ngIf="isEdit">Update Project</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="projectForm" *ngIf="project !== null">
+          <div class="error-message" *ngIf="error">
+            <p>
+              Error while uploading the file. please check if your file is not
+              corrupted and try again.
+            </p>
+          </div>
+          <div id="resource-form">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="title"
+                placeholder="Name"
+                formControlName="title"
+                [(ngModel)]="project.title"
+              />
+              <div
+                class="error-message"
+                *ngIf="
+                  projectForm.controls.title.invalid &&
+                  projectForm.controls.title.touched
+                "
+              >
+                <p>* Project title is required.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea
+                placeholder="Some description about the project"
+                class="form-control "
+                formControlName="description"
+                [(ngModel)]="project.description"
+              >
+              </textarea>
+              <div
+                class="error-message"
+                *ngIf="
+                  projectForm.controls.description.invalid &&
+                  projectForm.controls.description.touched
+                "
+              >
+                <p>* Project description is required.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label id="proposal-label" for="proposal">Project Proposal</label>
+              <input
+                ng2FileSelect
+                [uploader]="uploader"
+                (change)="handleFileSelection($event)"
+                id="proposal"
+                type="file"
+              />
+              <div class="error-message" *ngIf="!isFileSelected && submitted">
+                <p>* Project proposal is required.</p>
+              </div>
+            </div>
+            <div id="progress" *ngIf="isUploading">
+              <circle-progress
+                [percent]="progress"
+                [radius]="40"
+                [outerStrokeWidth]="8"
+                [innerStrokeWidth]="4"
+                [outerStrokeColor]="'#78C000'"
+                [innerStrokeColor]="'#C7E596'"
+                [animation]="true"
+                [animationDuration]="300"
+                [titleFontSize]="20"
+              ></circle-progress>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          *ngIf="!isEdit"
+          (click)="onFormSubmit()"
+          class="btn main-btn"
+        >
+          Create
+        </button>
+        <button
+          type="button"
+          *ngIf="isEdit"
+          (click)="onFormSubmit()"
+          class="btn main-btn"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn outline-btn"
+          data-dismiss="modal"
+          (click)="reset()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

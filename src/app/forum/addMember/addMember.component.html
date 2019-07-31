@@ -1,0 +1,40 @@
+<div class="add-member">
+    <div class="row">
+        <br>
+    </div>
+    <div class="row">
+        <div id="aside" class="col-md-offset-2 col-md-8">
+            <div class="widget">
+                <div class="widget-search">
+                    <input class="search-input" type="text" placeholder="search" [(ngModel)]="keyword"  (keyup)="searchUser($event)">
+                    <button class="search-btn" type="button"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="info">
+    <p>How to add users to your forum </p>
+    <ol class="info-content">
+      <li>1 - Search a user by their email address, username or proper name</li>
+      <li>2 - Find the right user from the search result</li>
+      <li>3 - Add them to the forum</li>
+    </ol>
+  </div>
+  <div class="users" *ngIf="users.length > 0">
+    <h4 class="title">Users search results</h4>
+    <table class="table">
+      <tbody>
+      <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: page }">
+        <th id="item" scope="row">
+          <i id="user-icon" class="fa fa-user-circle"></i> <p>{{ user.username }}</p>
+        </th>
+        <th>
+          <button class="main-btn" (click) = "addMember(user)">Add</button>
+        </th>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls *ngIf = "users.length > 10" (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

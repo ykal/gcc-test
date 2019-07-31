@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row"><br /></div>
+</div>
+<div class="container" id="event-list-container">
+  <div class="row">
+    <div class="no-resource-found" *ngIf="events.length === 0">
+      <app-not-found
+        type="fetch"
+        message="No event is created, yet."
+      ></app-not-found>
+    </div>
+    <!-- Event list -->
+    <ng-container class="row" *ngIf="events.length > 0">
+      <div
+        class="col-lg-4 col-md-4 col-sm-6"
+        *ngFor="
+          let event of (events | paginate: { itemsPerPage: 10, currentPage: p })
+        "
+      >
+        <div class="service" id="event">
+          <i class="fa fa-calendar"></i>
+          <h3>{{ getLimmitedEventTitle(event.title, 16) }}</h3>
+          <i class="fa fa-map-marker"></i>
+          <p><b>In</b> {{ event.city }}</p>
+          <p><b>Venue</b> {{ limitVenue(event.place, event.venue) }}</p>
+          <p>
+            <i id="event-time-icon" class="fa fa-calendar-check-o"></i> From
+            {{ event.startDate | amDateFormat: "MMM Do YYYY" }}
+          </p>
+          <p>
+            <i id="event-time-icon" class="fa fa-calendar-times-o"></i> To
+            {{ event.endDate | amDateFormat: "MMM Do YYYY" }}
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <button
+                *ngIf="!isPassed(event)"
+                [class.outline-btn]="!isOngoing(event) && !isPassed(event)"
+                [class.main-btn]="isOngoing(event)"
+                (click)="viewEventDetail(event)"
+                data-toggle="modal"
+                data-target="#myModal"
+              >
+                {{ isOngoing(event) ? "OnGoing" : "Detail" }}
+              </button>
+              <button
+                (click)="viewEventDetail(event)"
+                id="passed-status"
+                *ngIf="isPassed(event)"
+                class="main-btn"
+                data-toggle="modal"
+                data-target="#myModal"
+              >
+                Passed
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button
+                *ngIf="authService.isSolveitManager() || authService.isAdmin()"
+                class="btn main-btn"
+                (click)="onEdit(event)"
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!-- /Event list -->
+    <div *ngIf="events.length > 8" class="row" style="clear: both">
+      <div class="events-pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-event-view [event]="selectedEvent"></app-event-view>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="medium"
+  color="#b9638e"
+  type="ball-triangle-path"
+>
+  <p style="font-size: 20px; color: white">Loading ...</p>
+</ngx-spinner>

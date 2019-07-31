@@ -1,0 +1,61 @@
+ul.dropdown1 {
+  background: #b9638e;
+  padding: 1.5em;
+}
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  ul.dropdown1 {
+    margin: 3em 4em 0 0;
+  }
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  ul.dropdown1 {
+    margin: 3em 4em 0 0;
+  }
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  ul.dropdown1 {
+    margin: 3em 4em 0 0;
+  }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+}
+
+::ng-deep .navbar-nav a {
+  color: #000000;
+}
+
+::ng-deep .active > a {
+  color: #b9638e;
+}

@@ -1,0 +1,128 @@
+form {
+  margin: 5em auto;
+  padding: 2em;
+}
+
+#reportForm {
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+}
+
+#reportForm input,
+#type,
+#reportForm textarea {
+  margin-bottom: 2em;
+}
+
+#reportForm select,
+#type {
+  background: white;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #eeeeee;
+  padding: 1em;
+}
+
+#progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+#resource-upload-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 1em;
+  color: #ec4643;
+  background: pink;
+  padding: 2em;
+}
+
+.err {
+  border-color: #ec4643;
+}
+
+#proposal-label {
+  margin: 1em auto;
+  padding: 0.5em;
+}
+
+#form-title {
+  text-align: center;
+}
+
+textarea {
+  height: 25em;
+}
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  #reportForm {
+    width: 60%;
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  #reportForm {
+    width: 65%;
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  #reportForm {
+    width: 65%;
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  #reportForm {
+    width: 85%;
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  #reportForm {
+    width: 95%;
+    margin: auto;
+    padding: 1em;
+  }
+}

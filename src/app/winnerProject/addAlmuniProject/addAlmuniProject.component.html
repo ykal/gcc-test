@@ -1,0 +1,43 @@
+<form [formGroup]="almuniProjectForm" *ngIf="authService.isAuthenticated()">
+  <h4 class="title" id="form-title">Add Almuni Project</h4>
+  <div id="resource-form">
+    <div class="input-field" style="margin-top: 1em">
+      <select
+        name="role"
+        id="role"
+        [(ngModel)]="almuniProject.competitionId"
+        formControlName="competition"
+      >
+        <option selected value="0">Select Competition</option>
+        <option
+          *ngFor="let competition of competitions"
+          value="{{competition.id}}"
+          >{{ competition.name }}</option
+        >
+      </select>
+    </div>
+    <div class="input-field" style="margin-top: 1em">
+      <select
+        name="role"
+        id="role"
+        [(ngModel)]="almuniProject.projectId"
+        formControlName="project"
+      >
+        <option selected value="0">Select Project</option>
+        <option *ngFor="let project of projects" value="{{project.id}}">{{
+          project.title
+        }}</option>
+      </select>
+    </div>
+    <div class="form-group" id="resource-upload-btn">
+      <input
+        type="button"
+        [disabled]="!almuniProjectForm.valid"
+        (click)="addAlmuniProject()"
+        class="main-btn"
+        value="Create"
+      />
+    </div>
+  </div>
+</form>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

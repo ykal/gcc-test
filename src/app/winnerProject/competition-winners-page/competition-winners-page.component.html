@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div id="winners-page">
+  <div class="filter">
+    <span class="custom-dropdown big">
+      <select [(ngModel)]="filterKeyWord" (change)="filter($event)">
+        <option value="">Filter by competition</option>
+        <option *ngFor="let competition of competitions" [value]="competition.name">{{competition.name}}</option>
+      </select>
+    </span>
+  </div>
+  <div *ngFor="let competition of filteredWinners ">
+    <div *ngIf="competition.winners.length > 0">
+      <h3 class="competition-name">Winners Of {{competition.name}}</h3>
+      <div *ngFor="let city of competition.winners">
+        <div class="competition-winners">
+          <ng-container *ngIf="city.winners.length > 0">
+            <h5 class="city-name">{{city.name}}</h5>
+            <hr>
+            <div class="row">
+              <div class="city-winners">
+                <div class="winner col-sm-2" *ngFor="let winner of city.winners">
+                  <img [src]="getImageUrl(winner.thumbinal)" alt="thumbinal">
+                  <div style="height: 5em" [innerHtml]="getProjectTitle(winner.solveitproject.title)"></div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

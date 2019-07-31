@@ -1,0 +1,40 @@
+#myModal {
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*align-content: center;*/
+}
+
+#myModal .modal-dialog {
+  width: 70%;
+  height: 50%;
+  overflow-y: initial !important;
+}
+
+#myModal .modal-body {
+  height: 35em;
+  overflow-y: auto;
+}
+
+.iframe {
+  height: 80%;
+  margin-bottom: 1em;
+}
+
+.trash,
+.edit-pencil {
+  cursor: pointer;
+  margin-right: 2em;
+}
+
+.edit-pencil > i {
+  color: #b9638e;
+}
+
+.trash > i:hover,
+.edit-pencil:hover {
+  font-size: 1.2em;
+}
+
+.trash > i {
+  color: red;
+}

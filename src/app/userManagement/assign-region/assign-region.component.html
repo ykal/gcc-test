@@ -1,0 +1,36 @@
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<div id="assignRegionModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4> Assign Region </h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" *ngIf="!isLoading">
+          <div class="input-field">
+            <ss-multiselect-dropdown formControlName="cities" [texts]="myTexts" [settings]="mySettings" [options]="cities" [(ngModel)]="optionsModel" (ngModelChange)="onChange()"></ss-multiselect-dropdown>
+
+            <div class="error-message" *ngIf="form.controls.cities.invalid &&
+                                                              form.controls.cities.touched">
+              <p>* Please select at least one region.</p>
+            </div>
+          </div>
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </form>
+        <div id="spinner-container" *ngIf="isLoading">
+          <i class="fa fa-spinner fa-spin"></i>
+        </div>
+      </div>
+      <div></div>
+      <div class="modal-footer" *ngIf="!isLoading">
+        <button type="button" class="btn main-btn" (click)="done()"> Done </button>
+        <button type="button" class="btn outline-btn" (click)="exit.emit()" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

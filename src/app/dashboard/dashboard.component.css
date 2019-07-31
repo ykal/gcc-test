@@ -1,0 +1,36 @@
+.dashboard {
+  /* height: 150vh; */
+  margin: 4em auto 9em;
+}
+
+.dashboard-menu {
+  margin-right: 1.5em;
+  padding: 1em;
+  -webkit-box-shadow: 2px 4px 9px -4px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 2px 4px 9px -4px rgba(0, 0, 0, 0.12);
+  box-shadow: 2px 4px 9px -4px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-menu-item {
+  padding: 0.5em;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-menu-item:hover {
+  background: #efefef;
+  border: none;
+  padding: 1em;
+}
+
+.dashboard-menu-item-selected {
+  color: #b9638e;
+}
+
+.icon {
+  margin-right: 0.5em;
+}
+
+.dashboard-container {
+  margin-bottom: 30em;
+}

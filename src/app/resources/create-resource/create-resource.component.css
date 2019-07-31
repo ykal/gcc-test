@@ -1,0 +1,147 @@
+form {
+  width: 50%;
+  margin: 5em auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2em;
+}
+
+#resource-form {
+  width: 70%;
+  margin: auto;
+  padding: 1em;
+}
+
+.input-field {
+  margin-bottom: 1em;
+}
+
+#resource-form select {
+  background: white;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 1em;
+  height: 3.5em;
+}
+
+#progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+#resource-upload-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 0.7em;
+  color: #ec4643;
+}
+
+.err {
+  border-color: #ec4643;
+}
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  form {
+    width: 50%;
+    margin: 5em auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2em;
+  }
+
+  #resource-form {
+    width: 70%;
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  form {
+    width: 60%;
+    margin: 5em auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2em;
+  }
+
+  #resource-form {
+    width: 70%;
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  form {
+    width: 80%;
+    margin: 5em auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2em;
+  }
+
+  #resource-form {
+    width: 70%;
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  form {
+    width: 90%;
+    margin: 5em auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2em;
+  }
+
+  #resource-form {
+    width: 80%;
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  form {
+    width: 99%;
+    margin: 5em auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2em;
+  }
+
+  #resource-form {
+    width: 90%;
+    margin: auto;
+    padding: 1em;
+  }
+}

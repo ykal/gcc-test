@@ -1,0 +1,31 @@
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div class="modal-content" *ngIf="event">
+      <div class="modal-header" id="event-modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <div class="row title-container" style="float: left">
+          <h4 class="modal-title">{{ event.title }}</h4>
+        </div>
+        <div class="row time-container">
+          <div>
+            <i class="fa fa-clock-o" style="margin-right: 1em"
+              ><p>{{ event.startDate | amDateFormat: "hh:mmA" }}</p></i
+            >
+          </div>
+          <div>
+            <i class="fa fa-calendar" style="margin-right: 1em;"
+              ><p>{{ event.startDate | amDateFormat: "dddd" }}</p></i
+            >
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p><strong>Venue : </strong> {{ event.venue }}</p>
+        <p>{{ event.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

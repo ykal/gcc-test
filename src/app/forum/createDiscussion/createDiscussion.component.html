@@ -1,0 +1,108 @@
+<form [formGroup]="discussionForm" *ngIf="authService.isAuthenticated()">
+  <h4 class="title" id="form-title">New Discussion</h4>
+  <div id="resource-form">
+    <div class="form-group">
+      <input
+        type="text"
+        class="input"
+        name="title"
+        placeholder="Title"
+        formControlName="title"
+        [(ngModel)]="discussion.title"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          discussionForm.controls.title.invalid &&
+          discussionForm.controls.title.touched
+        "
+      >
+        <p>* Discussion title is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <ngx-wig
+        [buttons]="'bold, italic, link'"
+        [placeholder]="'Enter your content here.'"
+        [(ngModel)]="discussion.content"
+        formControlName="content"
+        class="input"
+      >
+      </ngx-wig>
+      <div
+        class="error-message"
+        *ngIf="
+          discussionForm.controls.content.invalid &&
+          discussionForm.controls.content.touched
+        "
+      >
+        <p>* Discussion content is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <!-- discussion photos -->
+      <label for="">Attach Image ( optional )</label>
+      <input
+        ng2FileSelect
+        [uploader]="uploader"
+        type="file"
+        (change)="handleFileSelection($event)"
+      />
+      <!-- discussion photos -->
+    </div>
+    <div class="form-group">
+      <!-- blog tags -->
+      <div class="blog-tags">
+        <ng-multiselect-dropdown
+          [placeholder]="'Select tags'"
+          [data]="mapTagsToDropDownList(tags)"
+          formControlName="tags"
+          (onSelect)="onTagSelected($event)"
+          (onDeSelect)="onTagDeselected($event)"
+          (onDeSelectAll)="onAllTagsDeselected($event)"
+          (onSelectAll)="onAllTagSelected($event)"
+          [settings]="dropdownSettings"
+          [(ngModel)]="selectedItems"
+        >
+        </ng-multiselect-dropdown>
+        <div
+          class="error-message"
+          *ngIf="
+            discussionForm.controls.tags.invalid &&
+            discussionForm.controls.tags.touched
+          "
+        >
+          <p>* Discussion tag is required.</p>
+        </div>
+      </div>
+      <!-- blog tags -->
+    </div>
+
+    <div class="form-group" id="resource-upload-btn">
+      <input
+        type="button"
+        (click)="createDiscussion()"
+        class="main-btn"
+        value="Create"
+        *ngIf="!isEdit"
+      />
+      <input
+        type="button"
+        (click)="createDiscussion()"
+        class="main-btn"
+        value="Update"
+        *ngIf="isEdit"
+      />
+    </div>
+  </div>
+</form>
+
+<div class="not-found" *ngIf="!authService.isAuthenticated()">
+  <div class="no-resource-found">
+    <p><i class="fa  fa-frown-o"></i> Please sign in to create discussion.</p>
+
+    <button class="outline-btn" (click)="onSignIn()">SignIn Here</button>
+  </div>
+</div>
+
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

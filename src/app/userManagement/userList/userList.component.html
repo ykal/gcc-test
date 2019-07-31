@@ -1,0 +1,190 @@
+<div class="users-list">
+  <div class="row"><br /></div>
+  <div class="row">
+    <div id="create-button">
+      <button (click)="createUser()" class="outline-btn create">Create</button>
+    </div>
+    <div id="aside">
+      <div class="widget">
+        <div class="widget-search">
+          <input
+            class="search-input form-control"
+            type="text"
+            placeholder="search"
+            [(ngModel)]="keyword"
+            (keyup)="searchUser($event)"
+          />
+          <button class="search-btn" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row filter-container">
+    <div class="filter">
+      <div class="widget">
+        <div class="widget-search">
+          <label for="user-fillter">Filter By Role </label>
+          <select
+            name="view"
+            id="user-fillter"
+            class="form-control"
+            [(ngModel)]="selected"
+            (change)="toggleView(selected)"
+          >
+            <option selected="selected" value="0"
+              >SolveIT Management Team</option
+            >
+            <option value="1">SolveIT Staffs & Mentors Team</option>
+            <option value="2">SolveIT Participants</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="filter" *ngIf="selectedRole.name == 'participant'">
+      <label for="view-filter">Filter By City </label>
+      <select
+        name="view"
+        class="form-control"
+        id="view-filter"
+        [(ngModel)]="selectedCity"
+        (change)="toggleView(selected)"
+      >
+        <option value="0">All</option>
+        <option *ngFor="let city of cities" value="{{city.id}}">{{
+          city.name
+        }}</option>
+      </select>
+    </div>
+    <div class="filter" *ngIf="selectedRole.name == 'participant'">
+      <label for="view-filter">Filter By Status </label>
+      <select
+        name="view"
+        class="form-control"
+        id="view-filter"
+        [(ngModel)]="selectedStatus"
+        (change)="filterUsers()"
+      >
+        <option value="">All</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="unconfirmed">Unconfirmed</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let user of (selectedUsers
+            | paginate: { itemsPerPage: 15, currentPage: page })
+        "
+      >
+        <td (click)="viewUserProfile(user)">{{ user.firstName }}</td>
+        <td (click)="viewUserProfile(user)">{{ user.middleName }}</td>
+        <td (click)="viewUserProfile(user)">{{ user.lastName }}</td>
+        <td (click)="viewUserProfile(user)">{{ user.email }}</td>
+        <td (click)="viewUserProfile(user)">{{ user.phoneNumber }}</td>
+        <td>
+          <div class="dropdown">
+            <button
+              class="btn outline-btn dropdown-toggle"
+              type="button"
+              data-toggle="dropdown"
+            >
+              Actions <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a
+                  *ngIf="!user.emailVerified"
+                  type="button"
+                  (click)="verifyEmail(user)"
+                  >Confirm</a
+                >
+              </li>
+              <li>
+                <a
+                  *ngIf="user.status == 'INACTIVE'"
+                  type="button"
+                  (click)="activateUser(user)"
+                  >Activate</a
+                >
+              </li>
+              <li>
+                <a
+                  *ngIf="user.status == 'ACTIVE'"
+                  (click)="deactivateUser(user)"
+                  >Deactivate</a
+                >
+              </li>
+              <li>
+                <a
+                  *ngIf="this.selectedRole.name === 'solveitteam'"
+                  (click)="showModal(user)"
+                  >Assign Region</a
+                >
+              </li>
+              <li>
+                <a *ngIf="!user.isModerator" (click)="processModerator(user)"
+                  >Make Moderator</a
+                >
+              </li>
+              <li>
+                <a *ngIf="user.isModerator" (click)="processModerator(user)"
+                  >Detain Moderator</a
+                >
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls
+    *ngIf="selectedUsers.length > 15"
+    (pageChange)="page = $event"
+  ></pagination-controls>
+  <div class="not-found" *ngIf="backupUsers.length == 0 && keyword === ''">
+    <div class="no-resource-found">
+      <app-not-found
+        message="> No registered users found, yet."
+        type="fetch"
+      ></app-not-found>
+    </div>
+  </div>
+  <div class="not-found" *ngIf="selectedUsers.length == 0 && keyword !== ''">
+    <div class="no-resource-found">
+      <app-not-found
+        message="User '{{ keyword }}' not found."
+        type="search"
+      ></app-not-found>
+    </div>
+  </div>
+</div>
+<app-assign-region
+  [user]="selectedMentorUser"
+  (exit)="onAssignRegionDone()"
+></app-assign-region>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="medium"
+  color="#b9638e"
+  type="ball-triangle-path"
+>
+  <p style="font-size: 20px; color: white">Loading ...</p>
+</ngx-spinner>

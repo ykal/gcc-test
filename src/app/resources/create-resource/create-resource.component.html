@@ -1,0 +1,159 @@
+<app-header></app-header>
+
+<form [formGroup]="resourceForm">
+  <div id="resource-form">
+    <!-- Section-header -->
+    <div class="section-header text-center">
+      <h2 class="title" *ngIf="!resource.id">Upload Resource</h2>
+      <h2 class="title" *ngIf="resource.id && resource.id !== ''">
+        Edit Resource
+      </h2>
+    </div>
+    <!-- /Section-header -->
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        placeholder="Name"
+        formControlName="title"
+        [(ngModel)]="resource.title"
+        [class.err]="
+          resourceForm.controls.title.invalid &&
+          resourceForm.controls.title.touched
+        "
+      />
+      <p
+        *ngIf="
+          resourceForm.controls.title.invalid &&
+          resourceForm.controls.title.touched
+        "
+        class="error-message"
+      >
+        * Name is required.
+      </p>
+    </div>
+    <div class="form-group">
+      <textarea
+        placeholder="Description"
+        class="form-control "
+        [class.err]="
+          resourceForm.controls.description.invalid &&
+          resourceForm.controls.description.touched
+        "
+        formControlName="description"
+        [(ngModel)]="resource.description"
+      >
+      </textarea>
+      <p
+        class="error-message"
+        *ngIf="
+          resourceForm.controls.description.invalid &&
+          resourceForm.controls.description.touched
+        "
+      >
+        * Description is required.
+      </p>
+    </div>
+    <div class="form-group">
+      <select
+        style="width: 100%"
+        name="type"
+        id="type"
+        class="form-control"
+        formControlName="category"
+        [(ngModel)]="resource.category"
+        [class.err]="
+          resourceForm.controls.category.invalid &&
+          resourceForm.controls.category.touched
+        "
+      >
+        <option value="" selected>Select Category</option>
+        <option
+          *ngFor="let category of categories"
+          [value]="category.category"
+          >{{ category.category }}</option
+        >
+      </select>
+      <p
+        class="error-message"
+        *ngIf="
+          resourceForm.controls.category.invalid &&
+          resourceForm.controls.category.touched
+        "
+      >
+        * Category is required.
+      </p>
+    </div>
+    <div class="form-group">
+      <select
+        style="width: 100%"
+        name="type"
+        id="type"
+        formControlName="type"
+        class="form-control"
+        [(ngModel)]="resource.type"
+        [class.err]="
+          resourceForm.controls.type.invalid &&
+          resourceForm.controls.type.touched
+        "
+      >
+        <option value="" selected>Select Resource Type</option>
+        <option value="video">Video</option>
+        <option value="document">Document</option>
+      </select>
+      <p
+        class="error-message"
+        *ngIf="
+          resourceForm.controls.type.invalid &&
+          resourceForm.controls.type.touched
+        "
+      >
+        * Type is required.
+      </p>
+    </div>
+    <div class="form-group">
+      <input
+        *ngIf="resource.type === 'video'"
+        type="text"
+        class="form-control"
+        name="url"
+        placeholder="Video Url"
+        formControlName="url"
+        [(ngModel)]="resource.url"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        ng2FileSelect
+        [uploader]="uploader"
+        type="file"
+        (change)="handleFileSelection($event)"
+        *ngIf="resource.type === 'document'"
+        class=""
+      />
+    </div>
+    <div id="progress" *ngIf="isUploading">
+      <circle-progress
+        [percent]="progress"
+        [radius]="40"
+        [outerStrokeWidth]="8"
+        [innerStrokeWidth]="4"
+        [outerStrokeColor]="'#78C000'"
+        [innerStrokeColor]="'#C7E596'"
+        [animation]="true"
+        [animationDuration]="300"
+        [titleFontSize]="20"
+      ></circle-progress>
+    </div>
+    <div class="form-group" id="resource-upload-btn">
+      <input
+        type="button"
+        (click)="onCreateResource()"
+        class="main-btn"
+        value="Upload"
+      />
+    </div>
+  </div>
+</form>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

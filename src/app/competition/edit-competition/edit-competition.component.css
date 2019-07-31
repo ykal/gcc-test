@@ -1,0 +1,31 @@
+form {
+  width: 90%;
+  margin: auto;
+}
+
+input {
+  background: #ffffff;
+  border-bottom: 2px solid #EEE;
+}
+
+.input-field {
+  margin-bottom: 1em;
+}
+
+.login-link {
+  margin-top: 2em;
+}
+
+.login-link p {
+  text-align: center;
+}
+
+.error-message p {
+  font-size: 0.7em;
+  text-align: center;
+  color: #EC4643;
+}
+
+.err {
+  border-color: #EC4643
+}

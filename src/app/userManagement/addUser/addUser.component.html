@@ -1,0 +1,259 @@
+<div id="registration-form">
+  <div class="form-title"><h4 class="text-center title">Add User</h4></div>
+  <form [formGroup]="userForm">
+    <div class="input-field">
+      <input
+        class="input "
+        type="text"
+        name="firstName"
+        formControlName="firstName"
+        placeholder="First Name"
+        [(ngModel)]="user.firstName"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.firstName.invalid &&
+          userForm.controls.firstName.touched
+        "
+      >
+        <p>* First Name is required.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input
+        class="input"
+        type="text"
+        name="middleName"
+        formControlName="middleName"
+        placeholder="Father's Name"
+        [(ngModel)]="user.middleName"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.middleName.invalid &&
+          userForm.controls.middleName.touched
+        "
+      >
+        <p>* Father's Name is required.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input
+        class="input"
+        type="text"
+        name="lastName"
+        formControlName="lastName"
+        placeholder="Grand Father's Name"
+        [(ngModel)]="user.lastName"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.lastName.invalid &&
+          userForm.controls.lastName.touched
+        "
+      >
+        <p>* Grand Father's Name is required.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <select
+        name="sex"
+        id="sex"
+        [(ngModel)]="user.gender"
+        formControlName="gender"
+      >
+        <option value="" selected>Gender</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.gender.invalid && userForm.controls.gender.touched
+        "
+      >
+        <p>* Gender is required.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input
+        class="input"
+        type="email"
+        name="email"
+        formControlName="email"
+        placeholder="Email"
+        [(ngModel)]="user.email"
+        email
+        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.email.touched &&
+          userForm.controls.email.errors?.required
+        "
+      >
+        <p>* Email is required.</p>
+      </div>
+      <div
+        class="error-message"
+        *ngIf="
+              userForm.controls.email.touched &&
+              userForm.controls.email.errors?.isEmailUnique
+            "
+      >
+        <p>* Email address must be unique.</p>
+      </div>
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.email.touched &&
+          userForm.controls.email.errors?.pattern
+        "
+      >
+        <p>* Invalid email address.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input
+        class="input"
+        type="text"
+        name="username"
+        formControlName="username"
+        placeholder="User Name"
+        [(ngModel)]="user.username"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.username.invalid &&
+          userForm.controls.username.touched
+        "
+      >
+        <p>* User name is required.</p>
+      </div>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><b>+251</b></span>
+      <input
+        type="tel"
+        class="input"
+        placeholder="Phone Number"
+        name="phoneNumber"
+        formControlName="phoneNumber"
+        placeholder="Phone Number"
+        [(ngModel)]="user.phoneNumber"
+      />
+    </div>
+    <div
+      class="error-message"
+      *ngIf="
+        userForm.controls.phoneNumber.errors?.required &&
+        userForm.controls.phoneNumber.touched
+      "
+    >
+      <p>* Phone Number is required.</p>
+    </div>
+    <div
+      class="error-message"
+      *ngIf="
+        userForm.controls.phoneNumber.touched &&
+        userForm.controls.phoneNumber.errors?.incorrect
+      "
+    >
+      <p>* Incorrect phone number.</p>
+      <p>* e.g 9xxxxxxxx</p>
+    </div>
+    <div class="input-field" style="margin-top: 1em">
+      <select name="role" id="role" [(ngModel)]="role" formControlName="role">
+        <option selected value="">Select Role</option>
+        <option *ngFor="let role of roles" value="{{role.id}}">{{
+          role.name
+        }}</option>
+      </select>
+      <div
+        class="error-message"
+        *ngIf="userForm.controls.role.invalid && userForm.controls.role.touched"
+      >
+        <p>* Role is required.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input
+        class="input"
+        type="password"
+        name="password"
+        formControlName="password"
+        placeholder="Password"
+        minlength="8"
+        [(ngModel)]="user.password"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.password.errors?.required &&
+          userForm.controls.password.touched
+        "
+      >
+        <p>* Password is required</p>
+      </div>
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.password.errors?.minlength &&
+          userForm.controls.password.touched
+        "
+      >
+        <p>* Password must be at least 8 characters.</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <input
+        class="input"
+        type="password"
+        name="rePassword"
+        formControlName="rePassword"
+        placeholder="Confirm Password"
+        [(ngModel)]="user.rePassword"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.rePassword.touched &&
+          userForm.controls.rePassword.errors?.required
+        "
+      >
+        <p>* Confirm your password.</p>
+      </div>
+      <div
+        class="error-message"
+        *ngIf="
+          userForm.controls.rePassword.touched &&
+          userForm.controls.rePassword.errors?.MatchPassword
+        "
+      >
+        <p>* Password didn't match.</p>
+      </div>
+    </div>
+    <button (click)="addUser()" type="button" class="main-btn">
+      Submit
+      <span *ngIf="isPosting"><i class="fa fa-spinner fa-spin"></i></span>
+    </button>
+    <button (click)="backToList()" type="button" class="outline-btn">
+      Back
+    </button>
+  </form>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<ngx-spinner
+  bdColor = "rgba(51, 51, 51, 0.8)"
+  size = "medium"
+  color = "#b9638e"
+  type = "ball-triangle-path"
+>
+  <p style="font-size: 20px; color: white">Loading ...</p>
+
+</ngx-spinner>

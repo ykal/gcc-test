@@ -1,0 +1,28 @@
+#event-modal-header h4 {
+  float: left;
+}
+
+#event-modal-header div{
+  float: right;
+  margin-right: 2em;
+}
+
+#event-modal-header p {
+  float: right;
+  margin-left: 1em;
+}
+
+.modal-body p {
+  text-align: justify;
+  line-height: 1.5em;
+  padding: 1.5em;
+}
+
+.title-container {
+  float: left;
+  margin-left: 1em;
+}
+
+.time-container {
+  float: right;
+}

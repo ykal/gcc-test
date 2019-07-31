@@ -1,0 +1,174 @@
+.forum-detail {
+  margin: 3em auto 10em;
+}
+
+.forum-detail-content {
+  margin-bottom: 6em;
+}
+
+.forum-detail-side-menu {
+  margin-top: 4em;
+}
+
+.no-discussion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  padding: 1.5em;
+}
+
+.no-discussion p {
+  font-size: 1.5em;
+}
+
+.pinned-discussions,
+.discussions {
+  margin-top: 2em;
+}
+
+.forum-detail-menu {
+  padding: 0.5em;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.forum-detail-menu:hover {
+  background: #efefef;
+  border: none;
+  padding: 1em;
+}
+
+.forum-detail-menu-selected {
+  color: #b9638e;
+}
+
+#detail-menu {
+  margin-right: 1.5em;
+  padding: 1em;
+  -webkit-box-shadow: 2px 4px 9px -4px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 2px 4px 9px -4px rgba(0, 0, 0, 0.12);
+  box-shadow: 2px 4px 9px -4px rgba(0, 0, 0, 0.12);
+}
+
+.menu-title {
+  float: right;
+  margin-left: 0.5em;
+  font-family: "Varela Round", "sans-serif";
+}
+
+tr {
+  cursor: pointer;
+}
+
+.discussionTitle {
+  text-align: left;
+}
+
+.table > tbody > tr > th,
+.table > thead > tr > th {
+  text-align: left;
+}
+
+.radio-inline {
+  margin-bottom: 0.5em;
+}
+
+.forum-description {
+  background-color: #ecfdfa;
+}
+
+.content {
+  margin: 0.5em;
+}
+
+.discussion-container {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  padding: 1em;
+  border: 1px solid #f7f5f5;
+  cursor: pointer;
+}
+
+.discussion-container:hover {
+  background: #f7f5f5;
+}
+
+.discussion-header h4 {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin: 0.7em auto;
+  color: #b9638e;
+}
+
+.discussion-header p {
+  font-weight: normal;
+  font-size: 0.8em;
+  font-style: italic;
+  margin: 0.9em auto auto 2.7em;
+}
+
+.discussion-footer {
+  clear: both;
+  margin-top: 1em;
+}
+
+.discussion-footer ul {
+  display: inline;
+}
+
+.discussion-footer ul li {
+  float: left;
+  padding-right: 1em;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.1);
+  margin-right: 0.5em;
+  font-style: italic;
+  font-size: 0.8em;
+  background: #f7f5f5;
+  padding: 0.4em;
+}
+
+.discussion-footer ul li:first-child {
+  margin-left: 2.7em;
+}
+
+i {
+  color: #b9638e;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .forum-detail-side-menu {
+    margin-bottom: 2em;
+  }
+  .discussion-footer ul li {
+    float: none;
+    padding-right: 1em;
+    border-right: none;
+    margin-right: 0em;
+    font-style: italic;
+    font-size: 0.8em;
+    background: #f7f5f5;
+    padding: 0.4em;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  forum-detail-side-menu {
+    margin-bottom: 2em;
+  }
+  .discussion-footer ul li {
+    float: none;
+    padding-right: 1em;
+    margin-right: 0em;
+    border-right: none;
+    font-style: italic;
+    font-size: 0.8em;
+    background: #f7f5f5;
+    padding: 0.4em;
+  }
+}

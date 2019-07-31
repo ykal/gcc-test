@@ -1,0 +1,10 @@
+<!-- blog comments -->
+<div class="blog-comments">
+    <h6 class="title">{{ comments.length }} {{comments.length > 1 ?  'Comments' : 'Comment  ' }}</h6>
+    <ng-container  *ngFor="let comment of comments | paginate: { itemsPerPage: 20, currentPage: page }">
+      <app-single-comment (remove)="removeComment($event)" [isOwnerOfDiscussion]="isOwnerOfDiscussion" [comment]="comment"></app-single-comment>
+    </ng-container>
+    <pagination-controls *ngIf="comments.length > 20" (pageChange)="page = $event"></pagination-controls>
+</div>
+<!-- /blog comments -->
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

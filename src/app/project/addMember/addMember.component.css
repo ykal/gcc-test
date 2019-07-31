@@ -1,0 +1,12 @@
+.info {
+  width: 60%;
+  margin: 2em auto;
+}
+
+.info-content {
+  margin-left: 1em;
+}
+
+.info p {
+  font-weight: bold;
+}

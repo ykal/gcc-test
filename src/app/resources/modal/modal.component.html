@@ -1,0 +1,84 @@
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div *ngIf="resource" class="modal-content">
+      <div class="modal-header">
+        <button
+          (click)="resetResource()"
+          type="button"
+          class="close"
+          data-dismiss="modal"
+        >
+          &times;
+        </button>
+        <div
+          *ngIf="authService.isAdmin() || authService.isSolveitManager"
+          class="close trash"
+        >
+          <i style="color: red" (click)="confirm()" class="fa fa-trash"></i>
+        </div>
+        <div
+          *ngIf="authService.isAdmin() || authService.isSolveitManager"
+          class="close edit-pencil"
+        >
+          <i style="" (click)="onEdit(resource)" class="fa fa-pencil"></i>
+        </div>
+        <h4 class="modal-title">{{ resource.title }}</h4>
+        <p id="time">{{ resource.createdAt | amTimeAgo }}</p>
+      </div>
+      <div class="modal-body">
+        <div class="iframe">
+          <iframe
+            width="100%"
+            height="100%"
+            [src]="
+              sanitizer.bypassSecurityTrustResourceUrl(
+                'https://www.youtube.com/embed/' + getUrl()
+              )
+            "
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+
+        <h4 class="title">Description</h4>
+        <p>{{ resource.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="confirmation" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div *ngIf="resource" class="modal-content">
+      <div class="modal-header">
+        <button
+          (click)="resetResource()"
+          type="button"
+          class="close"
+          data-dismiss="modal"
+        >
+          &times;
+        </button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to delete {{ resource.title }} ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="cancel()" class="btn btn-secondary">
+          Cancel
+        </button>
+        <button
+          type="button"
+          (click)="deleteResource()"
+          class="btn btn-primary"
+          data-dismiss="modal"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

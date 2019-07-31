@@ -1,0 +1,24 @@
+.events-list-header {
+  margin-top: 3.5em;
+}
+
+.header h4 {
+  float: left;
+  margin-right: 4em;
+  padding: 2px
+}
+
+.header button {
+  float: left;
+}
+
+#project-list-header {
+  margin-bottom: 2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.header h4 {
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  padding-right: 2em;
+  cursor: pointer;
+}

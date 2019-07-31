@@ -1,0 +1,54 @@
+.events-list-header {
+  margin-top: 3.5em;
+}
+
+#project-list-header {
+  margin-bottom: 2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.search-input {
+  width: 100%;
+}
+
+.button-active {
+  color: #e4b1b1;
+}
+
+.container {
+  margin-bottom: 8em;
+}
+
+.left {
+  margin-bottom: -4em;
+}
+
+.right > button,
+#aside {
+  float: right;
+}
+
+.left > p {
+  float: left;
+  font-size: 1.1em;
+  padding: 0.6em;
+  cursor: pointer;
+}
+
+.left > p:hover {
+  background: #f4f4f4;
+}
+
+.left > p:first-child,
+#aside {
+  margin-right: 2em;
+}
+
+.divider {
+  clear: both;
+}
+
+.active {
+  border-bottom: 1px solid #b9638e;
+  color: #b9638e;
+}

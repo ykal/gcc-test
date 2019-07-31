@@ -1,0 +1,100 @@
+<div class="content">
+  <div class="users-list">
+    <div class="row">
+      <h4 class="title" *ngIf="competition">
+        Projects registered for
+        <span style="color: teal">{{ competition.name }}</span>
+      </h4>
+      <br />
+    </div>
+    <div class="row">
+      <div id="aside" class="col-md-offset-2 col-md-6">
+        <div class="widget">
+          <div class="widget-search">
+            <input
+              class="search-input form-control"
+              type="text"
+              placeholder="search"
+              [(ngModel)]="keyword"
+              (keyup)="searchProject($event)"
+            />
+            <button class="search-btn" type="button">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="widget">
+          <div class="widget-search">
+            <select
+              name="city"
+              class="form-control"
+              id="city"
+              [(ngModel)]="selectedCity"
+              (change)="filterByCity()"
+            >
+              <option value="">Filter By City</option>
+              <option value="">All</option>
+              <option *ngFor="let city of cities" value="{{city.id}}">{{
+                city.name
+              }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table" *ngIf="projects.length > 0">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Project Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="project-items"
+          *ngFor="
+            let project of (projects
+              | paginate: { itemsPerPage: 15, currentPage: page });
+            let i = index
+          "
+          (click)="viewProject(project.solveitproject)"
+        >
+          <th>{{ i + 1 }}</th>
+          <td>
+            {{
+              project.solveitproject ? project.solveitproject.title : "Unknown"
+            }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls
+      *ngIf="projects.length > 15"
+      (pageChange)="page = $event"
+    ></pagination-controls>
+    <div class="not-found" *ngIf="backupProjects.length == 0 && keyword === ''">
+      <div class="no-resource-found">
+        <p><i class="fa  fa-frown-o"></i> No Projects Joined, yet.</p>
+      </div>
+    </div>
+    <div class="not-found" *ngIf="projects.length == 0 && keyword !== ''">
+      <div class="no-resource-found">
+        <p><i class="fa  fa-frown-o"></i> Project "{{ keyword }}" not found.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="medium"
+  color="#b9638e"
+  type="ball-triangle-path"
+>
+  <p style="font-size: 20px; color: white">Loading ...</p>
+</ngx-spinner>

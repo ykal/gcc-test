@@ -1,0 +1,139 @@
+<div class="container" id="projects-list-content">
+  <div class="info">
+    <button
+      class="btn outline-btn"
+      type="button"
+      data-toggle="collapse"
+      data-target="#instruction"
+      aria-expanded="false"
+      aria-controls="instruction"
+      style="margin-bottom: 2em;"
+    >
+      Read Instruction
+    </button>
+
+    <div class="collapse" id="instruction">
+      <div class="card card-body">
+        <p style="margin-bottom: 2em">
+          <span><i class="fa fa-info"></i></span> Instructions to Enrol for a
+          competition Click the plus button (+) to create a project. While
+          filling the form, if you do not have a proposal ready, then just
+          upload a document with one paragraph about the project and you can
+          edit it later. After you upload your project, it will appear on the
+          page within a box displaying your name. Click on ‘Enroll’ button and
+          follow the steps. Once you finish filling the form and join, you can
+          add your team members by clicking on the “Add Member” button on the
+          Left side of the page. However, before you add your friends, they need
+          to create an account on the website. Once they create their account,
+          you can search them and add them as team members to your project. The
+          instructions on how to search them are written on the particular page.
+          To avoid confusion due to a similarity in name, we recommend that you
+          should search them by their email address via which they created their
+          Solve IT account. <br />
+          Good Luck! <br />
+        </p>
+        <p>
+          ለውድድሩ ለመመዝገብ ይህን መመርያ ይከተሉ <br />
+          በመጀመርያ የመደመር ምልክት (+) (ያለውን ቁልፍ ይንኩና ፕሮጀክቶን ያስገቡ፡፡ ፕሮጀክቶን በሚያስገቡበት ሰዓት
+          ያለቀለት ፕሮፖዛል ከሌሎት ለግዜው አንድ ገፅ ላይ አንድ አንቀፅ ብቻ ይፃፉና እሱን ዶክመንት አፕሎድ ያድርጉ::
+          ፕሮጀክቶን በሌላ ግዜ ማስተካከል ይችላሉ፡፡ አፕሎድ አድርገው እንደጨረሱ ፕሮጀክቶ እየሰሩበት ያለው ገፅ ላይ
+          በሳጥን ውስጥ ሆኖ ከተመዘገቡበት ስም ጋር ይታያል፡፡ በኢንግሊዘኛ Enroll የሚለውን ቁልፍ ይጫኑና ትዕዛዙን
+          እየተከተሉ ፎርሙን ይምሉ፡፡ ፎርሙን ሞልተው እንደጨረሱ የቡድን አባላት መጨመር ይችላሉ፡፡ የቡድን ኣባላት!scp
+          ለመጨመር በገፁ ግራ በኩል በኢንግሊዘኛ Add Member የሚለውን ቅልፍ ይጫኑ፡፡ ነገር ግን የቡድን አባላትን
+          ከመጨመሮ በፊት የቡድን አባለቱ በዌብሳይቱ ላይ አካውንት መክፈታቸውን ያረጋግጡ ካልከፈቱ ደግሞ እንዲከፍቱ
+          ያሳሳቧቸው፡፡ የቡድን አባላቱ አካውንት ከከፈቱ የፈልግ ቁልፉ (Search button) ላይ ያለውን መመርያ
+          ተከትለው በተመዘገቡበት ስም ወይም ኤሜይል አድራሻ ይፈልጓቸውና የርሶ ፕሮጀክት ላይ የቡድን አባል አድረገው
+          ይመዝግቧቸው፡፡ የስም መመሳሰል እንዳያሳስት ሊጨምሯቸው ያሰቡትን የቡድን አባላት የሶለቭ ኢት ዌብሳይት አካውንት
+          በከፈቱበት የኤሜይል አድራሻ እንዲፈልጓቸው እንመክራለን፡፡ <br />
+          መልካም እድል!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="not-found">
+    <div class="no-resource-found" *ngIf="projects.length === 0">
+      <app-not-found
+        message="You haven't created any project, yet."
+      ></app-not-found>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Projects list -->
+    <ng-container *ngIf="projects.length > 0">
+      <div
+        class="col-md-3 col-sm-6"
+        *ngFor="
+          let project of (projects
+            | paginate: { itemsPerPage: 8, currentPage: p });
+          let i;
+          of: index
+        "
+      >
+        <div class="about">
+          <i class="fa fa-briefcase"></i>
+
+          <h3>{{ project.title }}</h3>
+          <a
+            style="cursor: pointer"
+            *ngIf="project.isEnrolled"
+            (click)="viewProject(project)"
+          >
+            <span
+              ><i
+                style="font-size: 1em; padding: .5em;"
+                class="fa fa-eye"
+              ></i></span
+            >View Project
+          </a>
+          <button
+            (click)="viewProject(project)"
+            class="main-btn"
+            *ngIf="!project.isEnrolled"
+          >
+            Enroll
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <!-- Projects list -->
+  </div>
+  <div *ngIf="projects.length > 0" class="row">
+    <div class="projects-pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="likeUsOnFB"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="likeUsOnFB"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="likeUsOnFB">Like Us On Facebook</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span id="times" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <fb-like
+          width="400"
+          href="https://www.facebook.com/SolveITbyiCog/"
+        ></fb-like>
+      </div>
+    </div>
+  </div>
+</div>

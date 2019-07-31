@@ -1,0 +1,130 @@
+.address-form {
+  width: 40%;
+  padding: 3em;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: white;
+  margin: 7% auto 10%;
+}
+
+form {
+  width: 80%;
+  margin: auto;
+}
+
+input {
+  background: #ffffff;
+  border-bottom: 1px solid #a29a9a;
+}
+
+.input-field,
+.form-group,
+.input-group {
+  margin-bottom: 1.5em;
+}
+
+.login-link {
+  margin-top: 2em;
+}
+
+.login-link p {
+  text-align: center;
+}
+
+.error-message p {
+  font-size: 0.7em;
+  text-align: center;
+  color: #ec4643;
+}
+
+.err {
+  border-color: #ec4643;
+}
+
+.input-field select {
+  padding: 0.5em;
+  background: white;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.register-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-btn button {
+}
+
+.disabled-btn {
+  background: #eeeeee;
+}
+
+body {
+  background-color: red;
+}
+
+img {
+  width: 7em;
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .address-form {
+    width: 40%;
+    padding: 3em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    margin: 7% auto 10%;
+  }
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .address-form {
+    width: 50%;
+    padding: 3em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    margin: 7% auto 10%;
+  }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .address-form {
+    width: 80%;
+    padding: 3em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    margin: 7% auto 10%;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .address-form {
+    width: 99%;
+    padding: 3em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    margin: 7% auto 10%;
+  }
+}

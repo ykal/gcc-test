@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="container" id="project-list-header">
+  <div class="events-list-header">
+    <div class="header">
+      <div class="row">
+        <div
+          class="col-sm-4"
+          *ngIf="authService.isSolveitManager() || authService.isAdmin()"
+        >
+          <h4 (click)="showList()" class="title">Events</h4>
+          <button
+            type="button"
+            (click)="toggleView('create-event')"
+            class="btn main-btn btn-circle-xl"
+          >
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+        <div class="col-md-2" *ngIf="selected == 'events-list'">
+          <div class="widget">
+            <div class="widget-search">
+              <select
+                name="city"
+                id="city"
+                [(ngModel)]="selectedCity"
+                (change)="filterByCity(this.selectedCity)"
+              >
+                <option value="">Filter By City</option>
+                <option value="">All</option>
+                <option *ngFor="let city of cities" value="{{city.name}}">{{
+                  city.name
+                }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-event-list
+  #list
+  (edit)="editEvent($event)"
+  *ngIf="selected == 'events-list'"
+></app-event-list>
+<app-event-create
+  [event]="event"
+  [isEdit]="isEdit"
+  (created)="toggleView('events-list')"
+  *ngIf="selected == 'create-event'"
+></app-event-create>

@@ -1,0 +1,107 @@
+<div class="competetion-list">
+  <div class="competetion-list-header">
+    <div class="row">
+      <div id="aside" class="col-md-offset-2 col-md-6">
+        <div class="widget">
+          <div class="widget-search">
+            <input
+              class="search-input form-control"
+              type="text"
+              placeholder="search"
+              [(ngModel)]="key"
+              (keyup)="onSearch($event)"
+            />
+            <button class="search-btn" type="button">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button
+          data-toggle="modal"
+          data-target="#createCompetitionModal"
+          data-backdrop="static"
+          class="outline-btn create"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="competetion-list-content">
+    <div class="row">
+      <div class="col-md-10 col-sm-10">
+        <table class="table .table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Started Date</th>
+              <th *ngIf="isAccessible()">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let competition of competitions; let i = index">
+              <td class="competition-row" (click)="onViewDetail(competition)">
+                {{ i + 1 }}
+              </td>
+              <td class="competition-row" (click)="onViewDetail(competition)">
+                {{ competition.name }}
+              </td>
+              <td class="competition-row" (click)="onViewDetail(competition)">
+                {{ competition.startingDate | amTimeAgo }}
+              </td>
+              <td *ngIf="isAccessible()">
+                <div class="dropdown">
+                  <button
+                    class="btn outline-btn dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                  >
+                    Actions <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        *ngIf="!competition.active"
+                        type="button"
+                        (click)="activateCompetition(competition)"
+                        >Activate</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        *ngIf="competition.active"
+                        type="button"
+                        (click)="deactivateCompetition(competition)"
+                        >Deactivate</a
+                      >
+                    </li>
+                    <li><a (click)="onEdit(competition)">Edit</a></li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="not-found" *ngIf="backupCompetitions.length == 0">
+          <div class="no-resource-found">
+            <app-not-found
+              message="Competitions are not created, yet."
+              type="fetch"
+            ></app-not-found>
+          </div>
+        </div>
+        <div class="not-found" *ngIf="competitions.length == 0 && key !== ''">
+          <div class="no-resource-found">
+            <app-not-found
+              message=" Competition '{{ key }}' not found."
+              type="search"
+            ></app-not-found>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

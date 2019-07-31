@@ -1,0 +1,80 @@
+<app-header></app-header>
+<div class="container-fluid dashboard dashboard-container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-3">
+      <ul class="dashboard-menu">
+        <li
+          *ngIf="
+            this.authService.isAdmin() || this.authService.isSolveitManager()
+          "
+          (click)="router.navigate(['dashboard/users'])"
+          class="dashboard-menu-item"
+          [class.dashboard-menu-item-selected]="
+            router.isActive('dashboard/users', true)
+          "
+        >
+          <span class="icon"><i class="fa fa-users"></i></span> Users
+        </li>
+        <li
+          (click)="router.navigate(['dashboard/competitions'])"
+          class="dashboard-menu-item"
+          [class.dashboard-menu-item-selected]="
+            router.isActive('dashboard/competitions', true)
+          "
+        >
+          <span class="icon"><i class="fa fa-star"></i></span> Competitions
+        </li>
+        <li
+          (click)="router.navigate(['dashboard/categories'])"
+          class="dashboard-menu-item"
+          [class.dashboard-menu-item-selected]="
+            router.isActive('dashboard/categories', true)
+          "
+        >
+          <span class="icon"><i class="fa fa-table"></i></span> Categories
+        </li>
+        <li
+          (click)="router.navigate(['dashboard/tags'])"
+          class="dashboard-menu-item"
+          [class.dashboard-menu-item-selected]="
+            router.isActive('dashboard/tags', true)
+          "
+        >
+          <span class="icon"><i class="fa fa-tags"></i></span> Tags
+        </li>
+        <li
+          (click)="router.navigate(['dashboard/cities'])"
+          class="dashboard-menu-item"
+          [class.dashboard-menu-item-selected]="
+            router.isActive('dashboard/cities', true)
+          "
+        >
+          <span class="icon"><i class="fa fa-building"></i></span> City
+        </li>
+        <li
+          *ngIf="isModerator || authService.isAdmin()"
+          (click)="router.navigate(['dashboard/review-discussion'])"
+          class="dashboard-menu-item"
+          [class.dashboard-menu-item-selected]="
+            router.isActive('dashboard/review-discussion', true)
+          "
+        >
+          <span class="icon"><i class="fa fa-eye"></i></span> Review Discussion
+        </li>
+        <li
+          (click)="router.navigate(['dashboard/export-data'])"
+          class="dashboard-menu-item"
+          [class.dashboard-menu-item-selected]="
+            router.isActive('dashboard/export-data', true)
+          "
+        >
+          <span class="icon"><i class="fa fa-external-link"></i></span> Export
+          Data
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <div class="dashboard-content"><router-outlet></router-outlet></div>
+    </div>
+  </div>
+</div>

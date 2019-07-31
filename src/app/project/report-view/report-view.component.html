@@ -1,0 +1,50 @@
+<div class="reportView">
+  <div class="report" *ngIf="report">
+    <div class="service" >
+      <i class="fa fa-file-text"></i>
+      <h3>{{report.title}}</h3>
+      <p>{{report.createdAt| amTimeAgo }}</p>
+      <button class="btn main-btn" *ngIf="report.type === types[0].id" (click)="showDocument(report.content.name)">Download Report</button>
+      <button class="btn main-btn" *ngIf="report.type === types[1].id"
+              type="button" data-toggle="collapse" data-target="#report-content" aria-expanded="false" aria-controls="report-content">Read Report</button>
+      <button class="btn outline-btn" (click)="backToProgressReportList()">Back</button>
+      <div class="collapse" *ngIf="report.type === types[1].id" id="report-content">
+        <div class="card card-body">
+          <h5 class="title">Report Content</h5>
+          {{report?.report}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <h5 class="title">Comments</h5>
+  <div class="report-comment-container">
+    <div class="media" *ngFor="let comment of reportComments" [class.my-comment]="userId === comment.user.id" [class.other-comment]="userId !== comment.user.id" >
+      <div class="media-left">
+        <img class="media-object" id="commenter-avatar" src="../../../assets/img/User_Circle.png" alt="">
+      </div>
+      <div class="media-body">
+        <h6 class="media-heading">{{comment.user.username}}<span class="time"> a minute ago</span></h6>
+        <p>{{comment.content}}</p>
+      </div>
+    </div>
+
+    <div class="media" *ngIf="reportComments.length === 0">
+      <div class="media-left">
+        <i class="media-object fa fa-frown-o"></i>
+      </div>
+      <div class="media-body">
+        <h6 class="media-heading">No comments found.</h6>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="reply-form">
+    <form [formGroup]="reportCommentForm">
+      <textarea placeholder="Add Your Commment" formControlName="content" [(ngModel)]="reportComment.content"></textarea>
+      <button [disabled]="!reportCommentForm.valid" type="submit" class="main-btn" (click)="addComment()">Reply</button>
+    </form>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

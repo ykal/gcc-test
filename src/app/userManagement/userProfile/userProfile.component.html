@@ -1,0 +1,133 @@
+<app-header></app-header>
+<div *ngIf="user" class="container emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img src="../../../assets/img/profile.svg" alt="" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5 style="text-align: center">
+            {{ user.firstName.toUpperCase() }}
+            {{ user.middleName.toUpperCase() }}
+          </h5>
+          <h6 style="text-align: center">SolveIT User</h6>
+          <p style="text-align: center" class="proile-rating" *ngIf="user.birthDate">
+            Birthday : <span>{{ user.birthDate.substr(0, 10) }}</span>
+          </p>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" [ngClass]="{ activeView: selected === views[0] }"
+              *ngIf="this.user.id === this.authService.getUserId()">
+              <a class="nav-link active" id="home-tab" role="tab" aria-selected="true"
+                (click)="toggleProfileView()">View Profile</a>
+            </li>
+            <li class="nav-item" [ngClass]="{ activeView: selected === views[1] }"
+              *ngIf="this.user.id === this.authService.getUserId()">
+              <a class="nav-link active" id="home-tab" role="tab" aria-selected="true"
+                (click)="selected = views[1]">Edit Profile</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="selected === views[0]">
+      <div class="col-md-4"></div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div role="tabpanel">
+            <div class="row">
+              <div class="col-md-6"><label>First Name</label></div>
+              <div class="col-md-6">
+                <p>{{ user.firstName }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Middle Name</label></div>
+              <div class="col-md-6">
+                <p>{{ user.middleName }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Last Name</label></div>
+              <div class="col-md-6">
+                <p>{{ user.lastName }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Email</label></div>
+              <div class="col-md-6">
+                <p>{{ user.email }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Phone</label></div>
+              <div class="col-md-6">
+                <p>{{ user.phoneNumber }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Gender</label></div>
+              <div class="col-md-6">
+                <p>{{ user.gender }}</p>
+              </div>
+            </div>
+            <div class="row" *ngIf="user.role.name == 'solve-it-participants'">
+              <div class="col-md-6"><label>City</label></div>
+              <div class="col-md-6">
+                <p>{{ user.city.name }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>User Type</label></div>
+              <div class="col-md-6">
+                <p>{{ user.userType }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Education Level</label></div>
+              <div class="col-md-6">
+                <p>{{ user.educationLevel }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Work Status</label></div>
+              <div class="col-md-6">
+                <p>{{ user.workStatus }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Emergency Contact Name</label></div>
+              <div class="col-md-6">
+                <p>{{ user.address.emergencyContact.fullName }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6"><label>Emergency Contact Phone Number</label></div>
+              <div class="col-md-6">
+                <p>{{ user.address.emergencyContact.phoneNumber }}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="authService.isSolveitParticipant()" class="btn-group">
+            <button [disabled]="user.userType == 'Almuni'" (click)="updateStatus('Almuni')" type="button"
+              class="btn outline-btn">
+              Be Almuni
+            </button>
+            <button [disabled]="user.userType == 'Contestant'" (click)="updateStatus('Contestant')" type="button"
+              class="btn outline-btn">
+              Be Contestant
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<app-edit-profile (updated)="getUser()" [user]="updatedUser" *ngIf="selected === views[1]"></app-edit-profile>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#b9638e" type="ball-triangle-path">
+  <p style="font-size: 20px; color: white">Loading ...</p>
+</ngx-spinner>

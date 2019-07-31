@@ -1,0 +1,16 @@
+<div class="side-bar">
+  <h5>Recent News</h5>
+  <ul class="recent-news">
+    <li class="recent-news-item" *ngIf="recentNews.length === 0">
+      No News Created Yet.
+    </li>
+    <li class="recent-news-item" *ngFor="let item of recentNews" (click)="viewNewsDetail(item)">
+      {{item.title}}
+      <br>
+      <span class="recent-news-time">{{item.createdAt | amCalendar:nextDay}}</span>
+    </li>
+    <li class="back" *ngIf="isBackVisible" (click)="back()">
+      Back to news List
+    </li>
+  </ul>
+</div>

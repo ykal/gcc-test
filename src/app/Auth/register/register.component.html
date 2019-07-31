@@ -1,0 +1,386 @@
+<app-header></app-header>
+
+<div *ngIf="isBasicFormActive" id="registration-form">
+  <div class="section-header text-center">
+    <img src="../../../assets/img/solveit-logo12.png" alt="" />
+  </div>
+  <!-- Section-header -->
+  <div class="section-header text-center">
+    <h2 class="title">Register For The Competition</h2>
+  </div>
+  <!-- /Section-header -->
+
+  <form [formGroup]="registerForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="text"
+            name="firstName"
+            formControlName="firstName"
+            placeholder="First Name"
+            [(ngModel)]="user.firstName"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.firstName.invalid &&
+              registerForm.controls.firstName.touched
+            "
+          >
+            <p>* First Name is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="text"
+            name="middleName"
+            formControlName="middleName"
+            placeholder="Father's Name"
+            [(ngModel)]="user.middleName"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.middleName.invalid &&
+              registerForm.controls.middleName.touched
+            "
+          >
+            <p>* Father's Name is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="text"
+            name="lastname"
+            formControlName="lastName"
+            placeholder="Grand Father's Name"
+            [(ngModel)]="user.lastName"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.lastName.invalid &&
+              registerForm.controls.lastName.touched
+            "
+          >
+            <p>* Grand Father's Name is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="email"
+            name="email"
+            formControlName="email"
+            placeholder="Email"
+            [(ngModel)]="user.email"
+            email
+            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.email.touched &&
+              registerForm.controls.email.errors?.required
+            "
+          >
+            <p>* Email is required.</p>
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.email.touched &&
+              registerForm.controls.email.errors?.isEmailUnique
+            "
+          >
+            <p>* Email address must be unique.</p>
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.email.touched &&
+              registerForm.controls.email.errors?.pattern
+            "
+          >
+            <p>* invalid email address.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="text"
+            name="username"
+            formControlName="username"
+            placeholder="User Name"
+            [(ngModel)]="user.username"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.username.invalid &&
+              registerForm.controls.username.touched
+            "
+          >
+            <p>* User name is required.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-addon"><b>+251</b></span>
+          <input
+            type="tel"
+            class="form-control"
+            placeholder="Phone Number"
+            name="phoneNumber"
+            formControlName="phoneNumber"
+            placeholder="Phone Number"
+            [(ngModel)]="user.phoneNumber"
+          />
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            registerForm.controls.phoneNumber.errors?.required &&
+            registerForm.controls.phoneNumber.touched
+          "
+        >
+          <p>* Phone Number is required.</p>
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            registerForm.controls.phoneNumber.touched &&
+            registerForm.controls.phoneNumber.errors?.incorrect
+          "
+        >
+          <p>* Incorrect phone number.</p>
+          <p>* e.g 9xxxxxxxx</p>
+        </div>
+        <div class="input-field">
+          <input
+            [owlDateTime]="dt2"
+            [owlDateTimeTrigger]="dt2"
+            placeholder="Birth Date (M / D / YYYY)"
+            id="age"
+            name="age"
+            id="age"
+            [(ngModel)]="user.birthDate"
+            formControlName="age"
+          />
+          <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar"></i></span>
+          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.age.invalid &&
+              registerForm.controls.age.touched
+            "
+          >
+            <p>* Birth date is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <select
+            name="sex"
+            id="sex"
+            class="form-control"
+            [(ngModel)]="user.gender"
+            formControlName="sex"
+          >
+            <option value="" selected>Gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.sex.invalid &&
+              registerForm.controls.sex.touched
+            "
+          >
+            <p>* Gender is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <select
+            name="educationLevel"
+            id="educationLevel"
+            class="form-control"
+            [(ngModel)]="user.educationLevel"
+            formControlName="educationLevel"
+          >
+            <option value="" selected>Education Level</option>
+            <option *ngFor="let level of educationLevels" value="{{level}}">{{
+              level.toUpperCase()
+            }}</option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.educationLevel.invalid &&
+              registerForm.controls.educationLevel.touched
+            "
+          >
+            <p>* Education Level is required.</p>
+          </div>
+        </div>
+        <div class="input-field" *ngIf="user.educationLevel === 'Other'">
+          <input
+            type="text"
+            name="otherEducationLevel"
+            id="otherEducationLevel"
+            class="form-control"
+            placeholder="Other Education Level"
+            [(ngModel)]="extraParams.otherEducationLevel"
+            formControlName="otherEducationLevel"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              user.educationLevel === 'Other' &&
+              extraParams.otherEducationLevel === '' &&
+              registerForm.controls.otherEducationLevel.touched
+            "
+          >
+            <p>* Education Level is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <select
+            name="status"
+            id="status"
+            class="form-control"
+            [(ngModel)]="user.workStatus"
+            formControlName="status"
+          >
+            <option value="" selected>Work Status</option>
+            <option *ngFor="let stat of status" value="{{stat}}">{{
+              stat.toUpperCase()
+            }}</option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.status.invalid &&
+              registerForm.controls.status.touched
+            "
+          >
+            <p>* Work status is required.</p>
+          </div>
+        </div>
+        <div class="input-field" *ngIf="user.workStatus === 'Other'">
+          <input
+            type="text"
+            name="otherStatus"
+            id="otherStatus"
+            class="form-control"
+            placeholder="Other Status"
+            [(ngModel)]="extraParams.otherStatus"
+            formControlName="otherStatus"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              user.workStatus === 'Other' &&
+              extraParams.otherStatus === '' &&
+              registerForm.controls.otherStatus.touched
+            "
+          >
+            <p>* Work status is required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6">
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="password"
+            name="password"
+            formControlName="password"
+            placeholder="Password"
+            [(ngModel)]="user.password"
+            minlength="8"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.password.errors?.required &&
+              registerForm.controls.password.touched
+            "
+          >
+            <p>* Password is required.</p>
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.password.errors?.minlength &&
+              registerForm.controls.password.touched
+            "
+          >
+            <p>* Password must be at least 8 characters.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="password"
+            name="rePassword"
+            formControlName="rePassword"
+            placeholder="Confirm Password"
+            [(ngModel)]="extraParams.rePassword"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.rePassword.touched &&
+              registerForm.controls.rePassword.errors?.required
+            "
+          >
+            <p>* Confirm your password.</p>
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              registerForm.controls.rePassword.touched &&
+              registerForm.controls.rePassword.errors?.MatchPassword
+            "
+          >
+            <p>* * Password not match.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="register-btn">
+      <button
+        (click)="onRegister()"
+        type="button"
+        id=""
+        class="main-btn"
+        [class.disabled]="!registerForm.valid"
+      >
+        Next
+      </button>
+    </div>
+  </form>
+  <div class="login-link">
+    <p>If you already have account <a routerLink="/login">login here.</a></p>
+  </div>
+</div>
+
+<app-adress
+  (next)="onAdressNext()"
+  (back)="onAdressBack()"
+  [isLoading]="isLoading"
+  [address]="address"
+  *ngIf="isAddressFormActive"
+></app-adress>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

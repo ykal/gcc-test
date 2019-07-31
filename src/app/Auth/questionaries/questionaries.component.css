@@ -1,0 +1,61 @@
+.questionariesForm {
+  width: 70%;
+  padding: 3em;
+  border: 1px solid rgba(0,0,0,0.1);
+  background-color: white;
+  margin: 7% auto 10%;
+}
+
+form {
+  width: 80%;
+  margin: auto;
+}
+
+input {
+  background: #ffffff;
+  border-bottom: 2px solid #EEE;
+}
+
+.input-field {
+  margin-bottom: 1.5em;
+}
+
+.login-link {
+  margin-top: 2em;
+}
+
+.login-link p {
+  text-align: center;
+}
+
+.error-message p {
+  font-size: 0.7em;
+  text-align: center;
+  color: #EC4643;
+}
+
+.err {
+  border-color: #EC4643
+}
+
+.input-field select {
+  padding: .5em;
+  background: white;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #eeee;
+}
+
+.register-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-btn button {
+  width: 60%;
+}
+
+.disabled-btn {
+  background: #EEEEEE;
+}

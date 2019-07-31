@@ -1,0 +1,230 @@
+<div id="edit-profile" *ngIf="user">
+  <form [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="text"
+            name="firstName"
+            formControlName="firstName"
+            placeholder="First Name"
+            [(ngModel)]="user.firstName"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              formGroup.controls.firstName.invalid &&
+              formGroup.controls.firstName.touched
+            "
+          >
+            <p>* First Name is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="text"
+            name="middleName"
+            formControlName="middleName"
+            placeholder="Father's Name"
+            [(ngModel)]="user.middleName"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              formGroup.controls.middleName.invalid &&
+              formGroup.controls.middleName.touched
+            "
+          >
+            <p>* Father's Name is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="text"
+            name="lastname"
+            formControlName="lastName"
+            placeholder="Grand Father's Name"
+            [(ngModel)]="user.lastName"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              formGroup.controls.lastName.invalid &&
+              formGroup.controls.lastName.touched
+            "
+          >
+            <p>* Grand Father's Name is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <input
+            class="form-control"
+            type="text"
+            name="username"
+            formControlName="username"
+            placeholder="User Name"
+            [(ngModel)]="user.username"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              formGroup.controls.username.invalid &&
+              formGroup.controls.username.touched
+            "
+          >
+            <p>* User name is required.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-addon"><b>+251</b></span>
+          <input
+            type="tel"
+            class="form-control"
+            placeholder="Phone Number"
+            name="phoneNumber"
+            formControlName="phoneNumber"
+            placeholder="Phone Number"
+            [(ngModel)]="user.phoneNumber"
+          />
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            formGroup.controls.phoneNumber.errors?.required &&
+            formGroup.controls.phoneNumber.touched
+          "
+        >
+          <p>* Phone Number is required.</p>
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            formGroup.controls.phoneNumber.touched &&
+            formGroup.controls.phoneNumber.errors?.incorrect
+          "
+        >
+          <p>* Incorrect phone number.</p>
+          <p>* e.g 9xxxxxxxx</p>
+        </div>
+        <div class="input-field">
+          <input
+            [owlDateTime]="dt2"
+            [owlDateTimeTrigger]="dt2"
+            placeholder="Birth Date"
+            id="age"
+            name="age"
+            id="age"
+            [(ngModel)]="user.birthDate"
+            formControlName="age"
+          />
+          <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar"></i></span>
+          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+          <div
+            class="error-message"
+            *ngIf="
+              formGroup.controls.age.invalid && formGroup.controls.age.touched
+            "
+          >
+            <p>* Birth date is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <select
+            class="form-control"
+            name="sex"
+            id="sex"
+            [(ngModel)]="user.gender"
+            formControlName="sex"
+          >
+            <option value="" selected>Gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              formGroup.controls.sex.invalid && formGroup.controls.sex.touched
+            "
+          >
+            <p>* Gender is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <select
+            class="form-control"
+            name="region"
+            id="region"
+            formControlName="region"
+            [(ngModel)]="regionId"
+            (change)="onRegionChange()"
+          >
+            <option value="">Select Your region</option>
+            <option *ngFor="let region of regions" value="{{region.id}}">{{
+              region.name.toUpperCase()
+            }}</option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              formGroup.controls.region.invalid &&
+              formGroup.controls.region.touched
+            "
+          >
+            <p>* Region is required.</p>
+          </div>
+        </div>
+        <div class="input-field">
+          <select
+            class="form-control"
+            name="city"
+            id="city"
+            formControlName="city"
+            [(ngModel)]="user.cityId"
+            (change)="onCityChange()"
+          >
+            <option value="">Select Your City</option>
+            <option *ngFor="let city of cities" value="{{city.id}}">{{
+              city.name.toUpperCase()
+            }}</option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              formGroup.controls.city.invalid && formGroup.controls.city.touched
+            "
+          >
+            <p>* City is required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="register-btn">
+      <button
+        (click)="onUpdate()"
+        type="button"
+        id=""
+        class="main-btn"
+        [class.disabled]="!formGroup.valid"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>
+
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="medium"
+  color="#b9638e"
+  type="ball-triangle-path"
+>
+  <p style="font-size: 20px; color: white">Loading ...</p>
+</ngx-spinner>

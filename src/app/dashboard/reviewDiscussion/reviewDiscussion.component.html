@@ -1,0 +1,59 @@
+<div class="discussions">
+  <h4 class="title">BlackListed Discussions</h4>
+  <div class="no-discussion" *ngIf="discussions.length == 0">
+    <app-not-found
+      message=" You have no BlackListed discussions."
+      type="fetch"
+    ></app-not-found>
+  </div>
+
+  <table class="table" *ngIf="discussions.length > 0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Flag count</th>
+        <th>Relieve</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let discussion of (discussions
+            | paginate: { itemsPerPage: 5, currentPage: page });
+          let index = index
+        "
+      >
+        <th (click)="viewDiscussion(discussion)" scope="row">
+          {{ discussion.title }}
+        </th>
+        <td (click)="viewDiscussion(user)">{{ countFlags(discussion.id) }}</td>
+        <td>
+          <button
+            (click)="relieveDiscussion(discussion)"
+            type="button"
+            class="btn btn-success"
+          >
+            Relieve
+          </button>
+        </td>
+        <td>
+          <button
+            (click)="removeDiscussion(discussion)"
+            type="button"
+            class="btn btn-danger"
+          >
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row discussion-pagination">
+    <pagination-controls
+      *ngIf="discussions.length > 15"
+      (pageChange)="discussionPage = $event"
+    ></pagination-controls>
+  </div>
+</div>

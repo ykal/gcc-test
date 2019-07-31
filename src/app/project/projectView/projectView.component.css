@@ -1,0 +1,108 @@
+.main-container {
+  margin: 4em auto 7em;
+}
+
+.menu-container {
+}
+
+.project-menu {
+  margin-right: 1.5em;
+  padding: 1em;
+  -webkit-box-shadow: 4px 8px 26px -6px rgba(0, 0, 0, 0.46);
+  -moz-box-shadow: 4px 8px 26px -6px rgba(0, 0, 0, 0.46);
+  box-shadow: 4px 8px 26px -6px rgba(0, 0, 0, 0.46);
+}
+
+.project-content {
+}
+
+li {
+  padding: 0.5em;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+li:hover {
+  background: #efefef;
+  border: none;
+  padding: 1em;
+}
+
+.selected {
+  color: #b9638e;
+}
+
+#progress-report-heading {
+  padding: 1em;
+}
+
+#progress-report-title {
+  float: left;
+  margin-top: 0.5em;
+}
+
+#upload-progress-report,
+#show-progress-report {
+  float: right;
+}
+
+#progress-report-content {
+  clear: both;
+}
+
+.progress-reports {
+  margin-top: 2em;
+  clear: both;
+}
+
+.project-profile {
+  padding: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#label,
+#status-label,
+#proposal-label {
+  float: left;
+  margin-right: 2em;
+  clear: both;
+}
+#description,
+#status-description,
+#proposal-description {
+  float: left;
+}
+
+#enroll,
+#download {
+  color: #b9638e;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.no-resource-found {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  width: 50%;
+  margin: 10em auto;
+}
+
+.service {
+  cursor: pointer;
+}
+
+.service:hover {
+  -webkit-box-shadow: 14px 13px 26px -12px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 14px 13px 26px -12px rgba(0, 0, 0, 0.75);
+  box-shadow: 14px 13px 26px -12px rgba(0, 0, 0, 0.75);
+}
+
+.service:hover h3 {
+  color: #b9638e;
+}
+
+.icon {
+  margin-right: 0.5em;
+}

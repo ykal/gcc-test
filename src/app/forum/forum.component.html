@@ -1,0 +1,75 @@
+<app-header></app-header>
+
+<div class="container" id="project-list-header">
+  <div class="events-list-header">
+    <div class="left">
+      <p
+        (click)="toggleView('forum-list-public')"
+        [class.active]="selected == 'forum-list-public'"
+      >
+        Public
+      </p>
+      <p
+        (click)="toggleView('forum-list-private')"
+        *ngIf="authService.isAuthenticated()"
+        [class.active]="selected == 'forum-list-private'"
+      >
+        Private
+      </p>
+      <div class="divider"></div>
+    </div>
+    <div class="right">
+      <button
+        type="button"
+        (click)="toggleView('forum-create')"
+        class="btn main-btn btn-circle-xl"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Create forum"
+        [class.button-active]="selected == 'forum-create'"
+      >
+        <i class="fa fa-plus"></i>
+      </button>
+      <div id="aside">
+        <div class="widget">
+          <div class="widget-search">
+            <input
+              class="search-input form-control"
+              type="text"
+              placeholder="Search"
+              [(ngModel)]="keyword"
+            />
+            <button class="search-btn" type="button">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <app-forum-create
+      (created)="forumCreated()"
+      *ngIf="selected == 'forum-create'"
+      [categories]="categories"
+    ></app-forum-create>
+    <app-forum-list
+      [keyword]="keyword"
+      (create)="toggleView('forum-create')"
+      *ngIf="selected == 'forum-list-public'"
+      [categories]="categories"
+      [selected]="selected"
+    ></app-forum-list>
+    <app-forum-list
+      (create)="toggleView('forum-create')"
+      [keyword]="keyword"
+      *ngIf="selected == 'forum-list-private'"
+      [categories]="categories"
+      [selected]="selected"
+    ></app-forum-list>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

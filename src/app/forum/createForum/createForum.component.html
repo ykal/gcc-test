@@ -1,0 +1,122 @@
+<form [formGroup]="forumForm" *ngIf="authService.isAuthenticated()">
+  <h4 class="title2">New Forum</h4>
+  <div id="resource-form">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        placeholder="Name"
+        formControlName="name"
+        [(ngModel)]="forum.name"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          forumForm.controls.name.invalid && forumForm.controls.name.touched
+        "
+      >
+        <p>* Forum name is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea
+        class="form-control"
+        name="descrioption"
+        placeholder="Description"
+        formControlName="description"
+        [(ngModel)]="forum.description"
+        rows="7"
+      >
+      </textarea>
+      <div
+        class="error-message"
+        *ngIf="
+          forumForm.controls.description.invalid &&
+          forumForm.controls.description.touched
+        "
+      >
+        <p>* Forum description is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <select
+        style="width: 100%"
+        name="category"
+        id="category"
+        formControlName="category"
+        class="form-control"
+        [(ngModel)]="forum.categoryId"
+      >
+        <option selected value="">Category</option>
+        <option value="{{category.id}}" *ngFor="let category of categories">{{
+          category.category
+        }}</option>
+      </select>
+      <div
+        class="error-message"
+        *ngIf="
+          forumForm.controls.category.invalid &&
+          forumForm.controls.category.touched
+        "
+      >
+        <p>* Forum category is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <select
+        style="width: 100%"
+        name="type"
+        id="type"
+        formControlName="type"
+        class="form-control"
+        [(ngModel)]="forum.private"
+      >
+        <option value="" selected>Type</option>
+        <option
+          value="0"
+          *ngIf="authService.isAdmin() || authService.isSolveitManager()"
+          >Public</option
+        >
+        <option value="1">Private</option>
+      </select>
+      <div
+        class="error-message"
+        *ngIf="
+          forumForm.controls.type.invalid && forumForm.controls.type.touched
+        "
+      >
+        <p>* Forum type is required.</p>
+      </div>
+      <div
+        class="alert"
+        id="alert-primary"
+        role="alert"
+        *ngIf="!(authService.isAdmin() || authService.isSolveitManager())"
+      >
+        Sorry, you cannot create public forums. You can create a private forum
+        which will be visible only for users you have invited. Look through the
+        already running forums first and look for the one related with what you
+        want to discuss. Then click on the forum that you think is most related
+        with your topic and under that topic create a new discussion.
+      </div>
+    </div>
+    <div class="form-group" id="resource-upload-btn">
+      <input
+        type="button"
+        (click)="createForum()"
+        class="main-btn"
+        value="Submit"
+      />
+    </div>
+  </div>
+</form>
+
+<div class="not-found" *ngIf="!authService.isAuthenticated()">
+  <div class="no-resource-found">
+    <p><i class="fa  fa-frown-o"></i> Please sign in to create a forum.</p>
+
+    <button class="outline-btn" (click)="onSignIn()">SignIn Here</button>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

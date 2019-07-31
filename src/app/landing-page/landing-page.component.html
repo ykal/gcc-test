@@ -1,0 +1,546 @@
+<!-- Header -->
+<header id="home">
+  <!-- Background Video -->
+  <!-- Background Image -->
+  <div
+    class="bg-img"
+    style="background-image: url('../../assets/img/gcc-bg.png');"
+  >
+    <div class="overlay"></div>
+  </div>
+  <!-- /Background Image -->
+  <!-- /Background Video -->
+
+  <!-- Nav -->
+  <nav id="nav" class="navbar nav-transparent">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- Logo -->
+        <div class="navbar-brand">
+          <a routerLink="">
+            <img
+              style="padding: 0.1em"
+              class="logo"
+              src="../../assets/img/gcc.png"
+              alt="logo"
+            />
+            <img class="logo-alt" src="../../assets/img/gcc.png" alt="logo" />
+          </a>
+        </div>
+        <!-- /Logo -->
+
+        <!-- Collapse nav button -->
+        <div
+          class="navbar-toggler nav-collapse"
+          type="button"
+          data-toggle="collapse"
+          data-target="#menus"
+          aria-controls="menus"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon" style="color: #FFFFFF;"></span>
+        </div>
+
+        <!-- /Collapse nav button -->
+      </div>
+
+      <!-- Main navigation -->
+      <div class="collapse navbar-collapse" id="menus">
+        <ul class="nav navbar-nav navbar-right">
+          <li [class.active]="router.isActive('', true)">
+            <a routerLink="">Home</a>
+          </li>
+          <li *ngIf="router.isActive('', true)">
+            <a href="#features">About</a>
+          </li>
+          <li>
+            <a href="#service" [class.active]="router.isActive('blog', false)"
+              >Blog</a
+            >
+          </li>
+          <li [class.active]="router.isActive('events', false)">
+            <a routerLink="/events">Events</a>
+          </li>
+          <li [class.active]="router.isActive('forums', false)">
+            <a routerLink="/forums">Forums</a>
+          </li>
+          <!--
+            <li [class.active]="router.isActive('news', false)">
+              <a routerLink="/news">News</a>
+            </li>
+          -->
+          <li [class.active]="router.isActive('resources', false)">
+            <a routerLink="/resources" *ngIf="authService.isAuthenticated()"
+              >Resources</a
+            >
+          </li>
+          <li
+            [class.active]="
+              router.isActive('login', false) ||
+              router.isActive('register', false) ||
+              router.isActive('forget-password', false)
+            "
+            *ngIf="!authService.isAuthenticated()"
+          >
+            <a routerLink="/login">SignIn/SignUp</a>
+          </li>
+          <li
+            [class.active]="router.isActive('my-projects', false)"
+            *ngIf="authService.isAuthenticated()"
+            class="has-dropdown"
+          >
+            <a
+              ><span style="margin-right: .5em;"
+                ><i class="fa fa-user"></i></span
+              >{{ "" }}</a
+            >
+            <ul class="dropdown1">
+              <li *ngIf="authService.isSolveitParticipant()">
+                <a routerLink="/my-projects">My Projects</a>
+              </li>
+              <li *ngIf="!authService.isAdmin()">
+                <a
+                  [routerLink]="[
+                    '/dashboard/userProfile',
+                    authService.getUserId()
+                  ]"
+                  >Profile</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink=""
+                  (click)="authService.signOut()"
+                  style="cursor: pointer;"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /Main navigation -->
+    </div>
+  </nav>
+  <!-- /Nav -->
+
+  <!-- home wrapper -->
+  <div class="home-wrapper">
+    <div class="container">
+      <div class="row">
+        <!-- home content -->
+        <div class="col-md-10 col-md-offset-1">
+          <div class="home-content">
+            <!-- <h1 class="white-text">We Are Creative Agency</h1> -->
+            <!--
+              <p class="white-text">Morbi mattis felis at nunc. Duis viverra diam non justo. In nisl. Nullam sit amet magna in magna gravida vehicula. Mauris tincidunt sem sed arcu. Nunc posuere.
+            -->
+            <!-- </p> -->
+            <!-- <button class="white-btn">Be A Part & Compete</button> -->
+            <!-- <button class="main-btn">Winner Projects</button> -->
+          </div>
+        </div>
+        <!-- /home content -->
+      </div>
+    </div>
+  </div>
+  <!-- /home wrapper -->
+</header>
+<!-- /Header -->
+
+<!-- Why Choose Us -->
+<div id="features" class="section md-padding bg-grey">
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- why choose us content -->
+      <div class="col-md-6">
+        <div class="section-header"><h2 class="title">About SolveIT</h2></div>
+        <p>
+          iCog incorporated some of its previous project ideas and resources and
+          came up with SOLVE IT an innovation completion in selected cities of
+          the country; capitalizing on the idea that the involvement of regional
+          cities is crucial if one wants to create a sustainable local tech
+          market. With such spirit, SOLVE IT was proposed to the US embassy in
+          Addis Ababa. The first round of SOLVE IT, as a result, was conducted
+          in collaboration with the US embassy (From November 30, 2017-
+          September 25, 2018).
+        </p>
+        <p>
+          The project sparked and created awareness about the impact of pro-poor
+          technologies via direct seminars, media coverage, marketing
+          collateral. And finally, it delivered a grand finale where the top
+          three projects were selected in the national competition by mobilizing
+          the top three projects, from each city, represented by one or two team
+          members, for a week-long boot camp training before the national
+          competition. In the boot camp the participants got the chance of to
+          visit Ethiopian airlines, ENSA and other technology places. In the
+          bootcamp the participants got a chance to meet and show their project
+          to investors at the end they presented their respective pitch for
+          competition judges.
+        </p>
+      </div>
+      <!-- /why choose us content -->
+
+      <!-- About slider -->
+      <div class="col-md-6">
+        <div
+          id="about-slider"
+          style="display: flex;
+    align-items: center;
+    margin: 10em 1em 0 1em;"
+          class=""
+        >
+          <img
+            class="img-responsive"
+            src="../../assets/img/backpic.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+      <!-- /About slider -->
+    </div>
+    <!-- /Row -->
+  </div>
+  <!-- /Container -->
+</div>
+<!-- /Why Choose Us -->
+
+<!-- Service -->
+<div id="service" class="section md-padding">
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Section header -->
+      <div class="section-header text-center">
+        <h2 class="title">What we offer</h2>
+      </div>
+      <!-- /Section header -->
+
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-cogs"></i>
+          <h3>Trainings</h3>
+          <p>
+            Hard work pays off. Our competitors get both business and technical
+            trainings in order to ameliorate their projects.
+          </p>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-handshake-o"></i>
+          <h3>Mentor Ships</h3>
+          <p>
+            Our competitors will have mentors in their respective fields that
+            will be able to guide them through the competition and check on the
+            growth of their projects.
+          </p>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-briefcase"></i>
+          <h3>Experiences</h3>
+          <p>
+            Get new friends and make new memories. Our competitors get to meet
+            people from all over the country, in different fields, each with
+            their own dreams.
+          </p>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-rocket"></i>
+          <h3>Incubation</h3>
+          <p>
+            Think big, do big. Our competitors get a chance to be incubated by
+            iCog Labs and eventually have their own startup company.
+          </p>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-usd"></i>
+          <h3>Investor connections</h3>
+          <p>
+            Grow your connections. With Solve IT you get to meet investors both
+            on national and international grounds.
+          </p>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-bandcamp"></i>
+          <h3>Boot camp</h3>
+          <p>
+            Intensive trainings, our competitors work on their projects to make
+            it the best it could possibly be.
+          </p>
+        </div>
+      </div>
+      <!-- /service -->
+    </div>
+    <!-- /Row -->
+  </div>
+  <!-- /Container -->
+</div>
+<!-- /Service -->
+
+<!-- Testimonial -->
+<div
+  id="testimonial"
+  class="section md-padding"
+  *ngIf="!authService.isAuthenticated() && false"
+>
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <!-- /Background Image -->
+    <div class="row register-now-container">
+      <h2 style="text-align: center">Register For SolveIT 2019 Now</h2>
+      <a routerLink="/register" class="outline-btn">Register</a>
+    </div>
+    <!-- /Row -->
+  </div>
+  <!-- /Container -->
+</div>
+<!-- /Testimonial -->
+
+<!-- Team -->
+<div id="team" class="section md-padding">
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Section header -->
+      <div class="section-header text-center">
+        <h2 class="title">Our Team</h2>
+      </div>
+      <!-- /Section header -->
+
+      <!-- team -->
+      <div class="col-sm-3">
+        <div class="team">
+          <div class="team-img">
+            <img
+              class="img-responsive"
+              src="../../assets/img/beruk.jpg"
+              alt=""
+            />
+            <div class="overlay">
+              <div class="team-social">
+                <a href="https://www.linkedin.com/in/berukayalew/"
+                  ><i class="fa fa-linkedin"></i
+                ></a>
+                <a href="https://twitter.com/rasberuk"
+                  ><i class="fa fa-twitter"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-content">
+            <h3>Beruk Ayalew</h3>
+            <span>Project Manager</span>
+          </div>
+        </div>
+      </div>
+      <!-- /team -->
+
+      <!-- team -->
+      <div class="col-sm-3">
+        <div class="team">
+          <div class="team-img">
+            <img
+              class="img-responsive"
+              src="../../assets/img/bezawit.jpg"
+              alt=""
+            />
+            <div class="overlay"><div class="team-social"></div></div>
+          </div>
+          <div class="team-content">
+            <h3>Bezawit Kassaye</h3>
+            <span>Project Coordinator</span>
+          </div>
+        </div>
+      </div>
+      <!-- /team -->
+
+      <!-- team -->
+      <div class="col-sm-3">
+        <div class="team">
+          <div class="team-img">
+            <img
+              class="img-responsive"
+              src="../../assets/img/hruy.jpg"
+              alt=""
+            />
+            <div class="overlay">
+              <div class="team-social">
+                <!-- <a href="#"><i class="fa fa-facebook"></i></a> -->
+                <!-- <a href="#"><i class="fa fa-google-plus"></i></a> -->
+                <!-- <a href="#"><i class="fa fa-twitter"></i></a> -->
+              </div>
+            </div>
+          </div>
+          <div class="team-content">
+            <h3>Hruy Tsegaye</h3>
+            <span>Project Adviser</span>
+          </div>
+        </div>
+      </div>
+      <!-- /team -->
+
+      <!-- team -->
+      <div class="col-sm-3">
+        <div class="team">
+          <div class="team-img">
+            <img
+              class="img-responsive"
+              src="../../assets/img/Betelhem%20Dessie.jpg"
+              alt=""
+            />
+            <div class="overlay">
+              <div class="team-social">
+                <a href="https://www.linkedin.com/in/betelhemdessie/"
+                  ><i class="fa fa-linkedin"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-content">
+            <h3>Bethlehem Dessie</h3>
+            <span>Project Adviser</span>
+          </div>
+        </div>
+      </div>
+      <!-- /team -->
+    </div>
+    <!-- /Row -->
+  </div>
+  <!-- /Container -->
+</div>
+<!-- /Team -->
+
+<!-- Blog -->
+<div id="blog" class="section md-padding bg-grey">
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Section header -->
+      <div class="section-header text-center">
+        <h2 class="title">Recents Articles</h2>
+      </div>
+      <!-- /Section header -->
+
+      <!-- blog -->
+      <div class="col-md-4">
+        <div class="blog">
+          <div class="blog-img">
+            <img
+              class="img-responsive"
+              src="https://i1.wp.com/icog-labs.com/wp-content/uploads/2019/07/IMG_20190710_141224_466.jpg?zoom=2&resize=584%2C389&ssl=1"
+              alt=""
+            />
+          </div>
+          <div class="blog-content">
+            <ul class="blog-meta">
+              <li><i class="fa fa-user"></i> Heldana Michael</li>
+              <li><i class="fa fa-clock-o"></i>July 12, 2019</li>
+            </ul>
+            <h3>Extra, extra! Solve IT 2019 is Here</h3>
+            <p>
+              Solve IT 2019 is coming to its end, and the Grand Finale is
+              approaching. The Solve IT 2019 team along with its partners– the
+              U.S. Embassy and JICA– is super busy with last-minute preparations
+              for the August 17, 2019 closing. Everyone is looking forward to
+              the finale, yet everyone is shunning it anxiously.
+            </p>
+            <a
+              target="_blank"
+              href="http://icog-labs.com/extra-extra-solve-it-2019-is-here/"
+              >Read more</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- /blog -->
+    </div>
+    <!-- /Row -->
+  </div>
+  <!-- /Container -->
+</div>
+<!-- /Blog -->
+
+<!-- Contact -->
+<div id="contact" class="section md-padding">
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Section-header -->
+      <div class="section-header text-center">
+        <h2 class="title">Get in touch</h2>
+      </div>
+      <!-- /Section-header -->
+
+      <!-- contact -->
+      <div class="col-sm-4">
+        <div class="contact">
+          <i class="fa fa-phone"></i>
+          <h3>Phone</h3>
+          <p>+251 118 62-5056</p>
+        </div>
+      </div>
+      <!-- /contact -->
+
+      <!-- contact -->
+      <div class="col-sm-4">
+        <div class="contact">
+          <i class="fa fa-envelope"></i>
+          <h3>Email</h3>
+          <p>info@icog-solveit.com</p>
+        </div>
+      </div>
+      <!-- /contact -->
+
+      <!-- contact -->
+      <div class="col-sm-4">
+        <div class="contact">
+          <i class="fa fa-map-marker"></i>
+          <h3>Address</h3>
+          <p>
+            Addis Ababa, Bole, Yeshi Building, 10th Floor, Infront of Bole
+            printing
+          </p>
+        </div>
+      </div>
+      <!-- /contact -->
+    </div>
+    <!-- /Row -->
+  </div>
+  <!-- /Container -->
+</div>
+<!-- /Contact -->
+
+<!-- <app-alumunni-detail></app-alumunni-detail> -->

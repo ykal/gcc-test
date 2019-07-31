@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="container news" *ngIf="news">
+  <div class="row">
+    <div class="col-md-4 col-sm-3">
+      <app-recent-news
+        [isBackVisible]="true"
+        (backEvent)="backToNewsList()"
+        [recentNews]="recentNews"
+      ></app-recent-news>
+    </div>
+    <div class="col-md-8 col-sm-9">
+      <div class="content">
+        <div class="blog">
+          <div class="blog-img">
+            <img
+              class="img-responsive"
+              [src]="getImageSource(news.img.name)"
+              alt=""
+            />
+          </div>
+          <div class="blog-content">
+            <ul class="blog-meta">
+              <li><i class="fa fa-user"></i>{{ news.user.username }}</li>
+              <li>
+                <i class="fa fa-clock-o"></i>{{ news.createdAt | amTimeAgo }}
+              </li>
+            </ul>
+            <h3>{{ news.title }}</h3>
+            <div class="news-content" [innerHTML]="news.content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

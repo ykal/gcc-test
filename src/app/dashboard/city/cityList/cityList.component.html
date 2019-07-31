@@ -1,0 +1,148 @@
+<div class="competetion-list-header">
+  <div class="row">
+    <div id="aside" class="col-md-offset-2 col-md-6">
+      <div class="widget">
+        <div class="widget-search">
+          <input
+            class="search-input"
+            type="text"
+            placeholder="search"
+            [(ngModel)]="key"
+            (keyup)="onSearch($event)"
+          />
+          <button class="search-btn" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button
+        data-toggle="modal"
+        data-target="#addCategory"
+        class="outline-btn create"
+      >
+        Create
+      </button>
+    </div>
+  </div>
+</div>
+<div class="competetion-list-content">
+  <div class="row">
+    <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Region</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let city of (cities
+                | paginate: { itemsPerPage: 15, currentPage: page });
+              let i = index
+            "
+          >
+            <td>{{ i + 1 }}</td>
+            <td>{{ city.region.name }}</td>
+            <td>{{ city.name }}</td>
+            <td>
+              <button
+                type="button"
+                (click)="deleteCity(city)"
+                class="btn btn-danger"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="not-found" *ngIf="backUpcities.length == 0">
+        <div class="no-resource-found">
+          <app-not-found
+            message="Cities are not created, yet"
+            type="fetch"
+          ></app-not-found>
+        </div>
+      </div>
+      <div class="not-found" *ngIf="cities.length == 0 && key !== ''">
+        <div class="no-resource-found">
+          <app-not-found
+            message="City '{{ key }}' not found."
+            type="search"
+          ></app-not-found>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="pagination">
+      <pagination-controls
+        *ngIf="backUpcities.length > 15"
+        (pageChange)="page = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<div id="addCategory" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Add City</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="cityForm" *ngIf="authService.isAuthenticated()">
+          <div id="resource-form">
+            <div class="form-group">
+              <label>Select Region:</label>
+              <select
+                class="form-control"
+                name="role"
+                id="role"
+                [(ngModel)]="city.regionId"
+                formControlName="region"
+              >
+                <option selected value="">Select Region</option>
+                <option *ngFor="let region of regions" value="{{region.id}}">{{
+                  region.name
+                }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>City Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="title"
+                placeholder="City Name"
+                formControlName="name"
+                [(ngModel)]="city.name"
+              />
+            </div>
+            <div class="form-group" id="resource-upload-btn">
+              <input
+                type="button"
+                [disabled]="!cityForm.valid"
+                (click)="oncreateCity()"
+                data-dismiss="modal"
+                class="main-btn"
+                value="Create"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>

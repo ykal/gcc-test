@@ -1,0 +1,33 @@
+#commenter-avatar  {
+  max-width: 1.5em;
+}
+
+.media {
+  border: 1px solid rgba(0,0,0,0.14);
+  width: 50%;
+  padding: 1em;
+}
+.media {
+  margin-bottom: 1.5em;
+}
+
+.media, .reply-form {
+  clear: both;
+}
+
+.my-comment {
+  float: left;
+}
+
+.other-comment {
+  float: right;
+}
+
+#report-content {
+  margin-top: 2em;
+  padding: 1em;
+}
+
+.service:hover .title {
+  color: #b9638e;
+}
