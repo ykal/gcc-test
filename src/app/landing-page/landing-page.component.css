@@ -88,3 +88,31 @@ ul.dropdown1 {
 ::ng-deep .active > a {
   color: #b9638e;
 }
+
+.girls,
+.can,
+.code {
+  color: white;
+  margin-right: 20px;
+  font-size: 4em;
+  font-family: fantasy;
+}
+
+.code {
+  font-size: 4em;
+  font-weight: "bold";
+}
+
+#learn-more {
+  color: #b9638e;
+  background: white;
+  padding: 10px 30px;
+  border-radius: 50px;
+  margin-right: 20px;
+  font-family: fantasy;
+  cursor: pointer;
+}
+.img-carosole {
+  background: none;
+  margin-top: 4em;
+}
