@@ -112,3 +112,28 @@ ul.dropdown1 {
   background: none;
   margin-top: 4em;
 }
+
+.archive {
+  padding: 1.5em 2em;
+  border-radius: 5em;
+  background-image: url("../../assets/img/card-bg.png");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.archive > h5 {
+  text-align: center;
+  color: white;
+  margin-bottom: -0.1em;
+}
+
+.archive > h5:hover {
+  text-decoration: underline;
+}

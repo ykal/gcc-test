@@ -1,0 +1,45 @@
+<div class="img-carosole">
+  <div class="section-header text-center">
+    <h2 class="title">Jimma University</h2>
+  </div>
+
+  <owl-carousel
+    [options]="mySlideOptions"
+    [items]="juImages"
+    [carouselClasses]="['owl-theme', 'sliding']"
+  >
+    <div class="item" *ngFor="let image of juImages; let i = index">
+      <div><img src="{{image}}" /></div>
+    </div>
+  </owl-carousel>
+</div>
+
+<div class="img-carosole">
+  <div class="section-header text-center">
+    <h2 class="title">Jimma American Corner</h2>
+  </div>
+
+  <owl-carousel
+    [options]="mySlideOptions"
+    [items]="jacpImages"
+    [carouselClasses]="['owl-theme', 'sliding']"
+  >
+    <div class="item" *ngFor="let image of jacpImages; let i = index">
+      <div><img src="{{image}}" /></div>
+    </div>
+  </owl-carousel>
+</div>
+
+<div class="img-carosole">
+  <div class="section-header text-center"><h2 class="title">Mekelle</h2></div>
+
+  <owl-carousel
+    [options]="mySlideOptions"
+    [items]="mekeleImages"
+    [carouselClasses]="['owl-theme', 'sliding']"
+  >
+    <div class="item" *ngFor="let image of mekeleImages; let i = index">
+      <div><img src="{{image}}" /></div>
+    </div>
+  </owl-carousel>
+</div>

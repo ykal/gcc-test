@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../Auth/services/auth.service";
 import { Router } from "@angular/router";
 import { Http } from "@angular/http";
+import { Title } from "@angular/platform-browser";
 
 declare var $: any;
 
@@ -12,13 +13,6 @@ declare var $: any;
 })
 export class LandingPageComponent implements OnInit {
   news: any = [];
-
-  constructor(
-    public authService: AuthService,
-    public router: Router,
-    public http: Http
-  ) {}
-
   bdImages = [
     "../../assets/img/BD/photo_2019-08-19_06-08-32.jpg",
     "../../assets/img/BD/photo_2019-08-19_06-09-10.jpg",
@@ -51,7 +45,6 @@ export class LandingPageComponent implements OnInit {
     "../../assets/img/JU/photo_2019-08-19_06-15-17.jpg",
     "../../assets/img/JU/photo_2019-08-19_06-15-24.jpg"
   ];
-
   jacpImages = [
     "../../assets/img/J.A.C.P/IMG_6303.JPG",
     "../../assets/img/J.A.C.P/IMG_6305.JPG",
@@ -64,8 +57,24 @@ export class LandingPageComponent implements OnInit {
     "../../assets/img/J.A.C.P/IMG_6314.JPG",
     "../../assets/img/J.A.C.P/IMG_6315.JPG"
   ];
-
+  archiveImages = {
+    bdImages: this.bdImages,
+    mekeleImages: this.mekeleImages,
+    juImages: this.juImages,
+    jacpImages: this.jacpImages
+  };
   mySlideOptions = { items: 1, dots: true, nav: false };
+
+  choosenArchive = {
+    title: "",
+    images: this.archiveImages.bdImages
+  };
+
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+    public http: Http
+  ) {}
 
   ngOnInit() {}
 
@@ -76,5 +85,13 @@ export class LandingPageComponent implements OnInit {
     } else {
       $("#menus").css("display", "none");
     }
+  }
+
+  onViewArchive(title, images) {
+    this.choosenArchive = {
+      title: title,
+      images: this.archiveImages[images]
+    };
+    $("#archive-modal").modal("show");
   }
 }

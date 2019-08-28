@@ -9,7 +9,7 @@
     <div class="overlay">
       <h3 class="girls">Girls Can</h3>
       <h3 class="code">Code</h3>
-      <a id="learn-more">Learn More</a>
+      <a id="learn-more" href="#about" style="cursor: pointer">Learn More</a>
     </div>
   </div>
   <!-- /Background Image -->
@@ -163,7 +163,9 @@
     >
       <div class="col-md-6">
         <!-- why choose us content -->
-        <div class="section-header"><h2 class="title">About GCC</h2></div>
+        <div class="section-header text-center">
+          <h2 class="title">About</h2>
+        </div>
         <p>
           Girls Can Code (GCC) is a project initiated by the U.S. Embassy, aimed
           to equip and inspire female high school students with computer coding
@@ -211,7 +213,7 @@
       <!-- service -->
       <div class="col-md-4 col-sm-6">
         <div class="service">
-          <i class="fa fa-handshake-o"></i>
+          <i class="fa fa-briefcase"></i>
           <h3>TRAINING OF TRAINERS</h3>
           <p>
             All GCC Next Gen trainers receive an intensive Training of Trainers
@@ -224,7 +226,7 @@
       <!-- service -->
       <div class="col-md-4 col-sm-6">
         <div class="service">
-          <i class="fa fa-briefcase"></i>
+          <i class="fa fa-rocket"></i>
           <h3>GCC NEXT GEN CAMP</h3>
           <p>
             We work with partnering institutions to host camps for girls who are
@@ -252,7 +254,7 @@
       <!-- service -->
       <div class="col-md-6 col-sm-6">
         <div class="service">
-          <i class="fa fa-usd"></i>
+          <i class="fa fa-certificate"></i>
           <h3>CAT</h3>
           <p>
             Students required to take and pass the CAT (CONTINUOUS ASSESSMENT
@@ -271,65 +273,124 @@
 </div>
 <!-- /Service -->
 
-<div class="img-carosole">
-  <div class="section-header text-center"><h2 class="title">Bahir Dar</h2></div>
+<!-- Service -->
+<div id="service" class="section">
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Section header -->
+      <div class="section-header text-center">
+        <h2 class="title">Our Story</h2>
+      </div>
+      <!-- /Section header -->
 
-  <owl-carousel
-    [options]="mySlideOptions"
-    [items]="bdImages"
-    [carouselClasses]="['owl-theme', 'sliding']"
-  >
-    <div class="item" *ngFor="let image of bdImages; let i = index">
-      <div><img src="{{image}}" /></div>
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-diamond"></i>
+          <h3>GCC 1st Generation</h3>
+          <p>GCC 1st Generation had 40 students in Addis Ababa</p>
+          <br />
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-diamond"></i>
+          <h3>GCC 2nd Generation</h3>
+          <p>
+            GCC 2nd Generation had 200 students in Bahar Dar, Dire Dawa, Jimma,
+            Mekelle and Addis Ababa
+          </p>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-4 col-sm-6">
+        <div class="service">
+          <i class="fa fa-diamond"></i>
+          <h3>GCC and Beyond</h3>
+          <p>
+            GCC and Beyond encourages participation of girls and boys in school
+            tech clubs: 100+ participants
+          </p>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
     </div>
-  </owl-carousel>
-</div>
-
-<div class="img-carosole">
-  <div class="section-header text-center">
-    <h2 class="title">Jimma University</h2>
+    <!-- /Row -->
   </div>
-
-  <owl-carousel
-    [options]="mySlideOptions"
-    [items]="juImages"
-    [carouselClasses]="['owl-theme', 'sliding']"
-  >
-    <div class="item" *ngFor="let image of juImages; let i = index">
-      <div><img src="{{image}}" /></div>
-    </div>
-  </owl-carousel>
+  <!-- /Container -->
 </div>
+<!-- /Service -->
 
-<div class="img-carosole">
-  <div class="section-header text-center">
-    <h2 class="title">Jimma American Corner</h2>
+<!-- Service -->
+<div id="service" class="section" style="margin-top: 2em;">
+  <!-- Container -->
+  <div class="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Section header -->
+      <div class="section-header text-center">
+        <h2 class="title">Archives</h2>
+      </div>
+      <!-- /Section header -->
+
+      <!-- service -->
+      <div class="col-md-3 col-sm-6">
+        <div
+          class="archive"
+          (click)="onViewArchive('Jimma University', 'juImages')"
+        >
+          <h5>Jimma University</h5>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-3 col-sm-6">
+        <div
+          class="archive"
+          (click)="onViewArchive('Jimma American Corner', 'jacpImages')"
+        >
+          <h5>Jimma American Corner</h5>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-3 col-sm-6">
+        <div
+          class="archive"
+          (click)="onViewArchive('Bahirdar American corner', 'bdImages')"
+        >
+          <h5>Bahirdar American corner</h5>
+        </div>
+      </div>
+      <!-- /service -->
+
+      <!-- service -->
+      <div class="col-md-3 col-sm-6">
+        <div
+          class="archive"
+          (click)="onViewArchive('Mekelle University', 'mekeleImages')"
+        >
+          <h5>Mek'ele University</h5>
+        </div>
+      </div>
+      <!-- /service -->
+    </div>
+    <!-- /Row -->
   </div>
-
-  <owl-carousel
-    [options]="mySlideOptions"
-    [items]="jacpImages"
-    [carouselClasses]="['owl-theme', 'sliding']"
-  >
-    <div class="item" *ngFor="let image of jacpImages; let i = index">
-      <div><img src="{{image}}" /></div>
-    </div>
-  </owl-carousel>
+  <!-- /Container -->
 </div>
-
-<div class="img-carosole">
-  <div class="section-header text-center"><h2 class="title">Mekelle</h2></div>
-
-  <owl-carousel
-    [options]="mySlideOptions"
-    [items]="mekeleImages"
-    [carouselClasses]="['owl-theme', 'sliding']"
-  >
-    <div class="item" *ngFor="let image of mekeleImages; let i = index">
-      <div><img src="{{image}}" /></div>
-    </div>
-  </owl-carousel>
-</div>
+<!-- /Service -->
 
 <!-- Testimonial -->
 <div
@@ -401,3 +462,31 @@
   <!-- /Container -->
 </div>
 <!-- /Contact -->
+<div id="archive-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">{{ choosenArchive.title }}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="img-carosole">
+          <owl-carousel
+            [options]="mySlideOptions"
+            [items]="choosenArchive.images"
+            [carouselClasses]="['owl-theme', 'sliding']"
+          >
+            <div
+              class="item"
+              *ngFor="let image of choosenArchive.images; let i = index"
+            >
+              <div><img src="{{image}}" /></div>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
