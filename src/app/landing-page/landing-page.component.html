@@ -56,10 +56,11 @@
             <a routerLink="">Home</a>
           </li>
           <li *ngIf="router.isActive('', true)"><a href="#about">About</a></li>
-          <li>
-            <a href="#service" [class.active]="router.isActive('blog', false)"
-              >Blog</a
-            >
+          <li
+            [class.active]="router.isActive('dashboard', false)"
+            *ngIf="authService.isAuthenticated()"
+          >
+            <a routerLink="/certifications">Certification</a>
           </li>
           <li [class.active]="router.isActive('events', false)">
             <a routerLink="/events">Events</a>
@@ -237,7 +238,7 @@
       <!-- service -->
       <div class="col-md-6 col-sm-6">
         <div class="service">
-          <i class="fa fa-rocket"></i>
+          <i class="fa fa-globe"></i>
           <h3>ALUMNI ENGAGEMENT and NETWORKING</h3>
           <p>
             Facilitate GCC alumni (trainers and students) engagement with each
@@ -275,7 +276,7 @@
 
   <owl-carousel
     [options]="mySlideOptions"
-    [items]="images"
+    [items]="bdImages"
     [carouselClasses]="['owl-theme', 'sliding']"
   >
     <div class="item" *ngFor="let image of bdImages; let i = index">
@@ -291,7 +292,7 @@
 
   <owl-carousel
     [options]="mySlideOptions"
-    [items]="images"
+    [items]="juImages"
     [carouselClasses]="['owl-theme', 'sliding']"
   >
     <div class="item" *ngFor="let image of juImages; let i = index">
@@ -307,7 +308,7 @@
 
   <owl-carousel
     [options]="mySlideOptions"
-    [items]="images"
+    [items]="jacpImages"
     [carouselClasses]="['owl-theme', 'sliding']"
   >
     <div class="item" *ngFor="let image of jacpImages; let i = index">
@@ -321,7 +322,7 @@
 
   <owl-carousel
     [options]="mySlideOptions"
-    [items]="images"
+    [items]="mekeleImages"
     [carouselClasses]="['owl-theme', 'sliding']"
   >
     <div class="item" *ngFor="let image of mekeleImages; let i = index">
@@ -400,5 +401,3 @@
   <!-- /Container -->
 </div>
 <!-- /Contact -->
-
-<!-- <app-alumunni-detail></app-alumunni-detail> -->

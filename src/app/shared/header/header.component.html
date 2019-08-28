@@ -42,8 +42,11 @@
           <li *ngIf="router.isActive('', true)">
             <a href="#features">About</a>
           </li>
-          <li [class.active]="router.isActive('blog', false)">
-            <a href="#service">Blog</a>
+          <li
+            [class.active]="router.isActive('dashboard', false)"
+            *ngIf="authService.isAuthenticated()"
+          >
+            <a routerLink="/certifications">Certification</a>
           </li>
           <li
             [class.active]="router.isActive('dashboard', false)"

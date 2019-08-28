@@ -9,7 +9,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { DashboardGuardService } from "./Auth/services/dashboard-guard.service";
 
 export const APP_ROUTES: Routes = [
-  { path: "", pathMatch: 'full', component: LandingPageComponent },
+  { path: "", pathMatch: "full", component: LandingPageComponent },
   ...AUTH_ROUTES,
   { path: "forums", loadChildren: "./forum/forum.module#ForumModule" },
   {
@@ -36,9 +36,13 @@ export const APP_ROUTES: Routes = [
     loadChildren: "./winnerProject/winnerProject.module#WinnerProjectModule"
   },
   {
+    path: "certifications",
+    loadChildren: "./certification/certification.module#CertificationModule"
+  },
+  {
     path: "sponsors",
     loadChildren: "./sponsors/sponsors.module#SponsorsModule"
   },
   { path: "404", component: PageNotFoundComponent },
-  { path: '**', redirectTo: '/404' }
+  { path: "**", redirectTo: "/404" }
 ];

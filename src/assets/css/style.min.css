@@ -549,7 +549,7 @@ header {
   position: relative;
   padding: 40px 20px;
   border: 1px solid #ccc;
-  margin: 15px 0;
+  margin: 0;
 }
 .about i {
   font-size: 36px;
@@ -578,6 +578,9 @@ header {
 }
 .about:hover h3 {
   color: #fff;
+}
+#about {
+  margin-top: 0;
 }
 .work {
   position: relative;

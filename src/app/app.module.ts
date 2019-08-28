@@ -16,17 +16,23 @@ import { SolveitTeamGuardService } from "./Auth/services/solveit-team-guard.serv
 import { SolveitMgmtGuardService } from "./Auth/services/solveit-mgmt-guard.service";
 import { WinnerProjectModule } from "./winnerProject/winnerProject.module";
 import { MomentModule } from "angular2-moment";
-import { AlumunniDetailComponent } from "./alumunni-detail/alumunni-detail.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgCircleProgressModule } from "ng-circle-progress";
-import { WeeklyWinnerComponent } from "./weeklyWinner/weeklyWinner.component";
 import { FacebookModule } from "ngx-facebook";
 import { OwlModule } from "ngx-owl-carousel";
+import { WeeklyWinnerComponent } from "./weeklyWinner/weeklyWinner.component";
+import { AlumunniDetailComponent } from "./alumunni-detail/alumunni-detail.component";
 
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent, PageNotFoundComponent],
+  declarations: [
+    AppComponent,
+    LandingPageComponent,
+    PageNotFoundComponent,
+    WeeklyWinnerComponent,
+    AlumunniDetailComponent
+  ],
   imports: [
     BrowserModule,
     HttpModule,

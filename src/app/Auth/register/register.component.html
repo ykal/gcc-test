@@ -17,7 +17,7 @@
             type="text"
             name="firstName"
             formControlName="firstName"
-            placeholder="First Name"
+            placeholder="Full Name"
             [(ngModel)]="user.firstName"
           />
           <div
@@ -27,7 +27,7 @@
               registerForm.controls.firstName.touched
             "
           >
-            <p>* First Name is required.</p>
+            <p>* Full Name is required.</p>
           </div>
         </div>
         <div class="input-field">
@@ -36,7 +36,7 @@
             type="text"
             name="middleName"
             formControlName="middleName"
-            placeholder="Father's Name"
+            placeholder="School"
             [(ngModel)]="user.middleName"
           />
           <div
@@ -46,7 +46,7 @@
               registerForm.controls.middleName.touched
             "
           >
-            <p>* Father's Name is required.</p>
+            <p>* School is required.</p>
           </div>
         </div>
         <div class="input-field">
@@ -55,7 +55,7 @@
             type="text"
             name="lastname"
             formControlName="lastName"
-            placeholder="Grand Father's Name"
+            placeholder="Grade Level"
             [(ngModel)]="user.lastName"
           />
           <div
@@ -65,7 +65,7 @@
               registerForm.controls.lastName.touched
             "
           >
-            <p>* Grand Father's Name is required.</p>
+            <p>* Grade Level is required.</p>
           </div>
         </div>
         <div class="input-field">
@@ -107,28 +107,6 @@
             <p>* invalid email address.</p>
           </div>
         </div>
-        <div class="input-field">
-          <input
-            class="form-control"
-            type="text"
-            name="username"
-            formControlName="username"
-            placeholder="User Name"
-            [(ngModel)]="user.username"
-          />
-          <div
-            class="error-message"
-            *ngIf="
-              registerForm.controls.username.invalid &&
-              registerForm.controls.username.touched
-            "
-          >
-            <p>* User name is required.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
         <div class="input-group">
           <span class="input-group-addon"><b>+251</b></span>
           <input
@@ -150,16 +128,9 @@
         >
           <p>* Phone Number is required.</p>
         </div>
-        <div
-          class="error-message"
-          *ngIf="
-            registerForm.controls.phoneNumber.touched &&
-            registerForm.controls.phoneNumber.errors?.incorrect
-          "
-        >
-          <p>* Incorrect phone number.</p>
-          <p>* e.g 9xxxxxxxx</p>
-        </div>
+      </div>
+
+      <div class="col-md-6">
         <div class="input-field">
           <input
             [owlDateTime]="dt2"
@@ -206,92 +177,29 @@
           </div>
         </div>
         <div class="input-field">
-          <select
-            name="educationLevel"
-            id="educationLevel"
-            class="form-control"
-            [(ngModel)]="user.educationLevel"
-            formControlName="educationLevel"
-          >
-            <option value="" selected>Education Level</option>
-            <option *ngFor="let level of educationLevels" value="{{level}}">{{
-              level.toUpperCase()
-            }}</option>
-          </select>
-          <div
-            class="error-message"
-            *ngIf="
-              registerForm.controls.educationLevel.invalid &&
-              registerForm.controls.educationLevel.touched
-            "
-          >
-            <p>* Education Level is required.</p>
-          </div>
-        </div>
-        <div class="input-field" *ngIf="user.educationLevel === 'Other'">
           <input
-            type="text"
-            name="otherEducationLevel"
-            id="otherEducationLevel"
             class="form-control"
-            placeholder="Other Education Level"
-            [(ngModel)]="extraParams.otherEducationLevel"
-            formControlName="otherEducationLevel"
+            type="text"
+            name="firstName"
+            placeholder="Guardian Full Name"
           />
-          <div
-            class="error-message"
-            *ngIf="
-              user.educationLevel === 'Other' &&
-              extraParams.otherEducationLevel === '' &&
-              registerForm.controls.otherEducationLevel.touched
-            "
-          >
-            <p>* Education Level is required.</p>
-          </div>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"><b>+251</b></span>
+          <input
+            type="tel"
+            class="form-control"
+            placeholder="Guardian Phone Number"
+            name="phoneNumber"
+          />
         </div>
         <div class="input-field">
-          <select
-            name="status"
-            id="status"
-            class="form-control"
-            [(ngModel)]="user.workStatus"
-            formControlName="status"
-          >
-            <option value="" selected>Work Status</option>
-            <option *ngFor="let stat of status" value="{{stat}}">{{
-              stat.toUpperCase()
-            }}</option>
-          </select>
-          <div
-            class="error-message"
-            *ngIf="
-              registerForm.controls.status.invalid &&
-              registerForm.controls.status.touched
-            "
-          >
-            <p>* Work status is required.</p>
-          </div>
-        </div>
-        <div class="input-field" *ngIf="user.workStatus === 'Other'">
           <input
-            type="text"
-            name="otherStatus"
-            id="otherStatus"
             class="form-control"
-            placeholder="Other Status"
-            [(ngModel)]="extraParams.otherStatus"
-            formControlName="otherStatus"
+            type="text"
+            name="firstName"
+            placeholder="City"
           />
-          <div
-            class="error-message"
-            *ngIf="
-              user.workStatus === 'Other' &&
-              extraParams.otherStatus === '' &&
-              registerForm.controls.otherStatus.touched
-            "
-          >
-            <p>* Work status is required.</p>
-          </div>
         </div>
       </div>
     </div>
@@ -365,7 +273,7 @@
         class="main-btn"
         [class.disabled]="!registerForm.valid"
       >
-        Next
+        Sign Up
       </button>
     </div>
   </form>

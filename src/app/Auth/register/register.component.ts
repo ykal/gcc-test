@@ -86,17 +86,17 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group(
       {
         firstName: ["", Validators.required],
-        middleName: ["", Validators.required],
-        lastName: ["", Validators.required],
-        username: ["", Validators.required],
+        middleName: [""],
+        lastName: [""],
+        username: [""],
         email: ["", Validators.required, this.isEmailUnique.bind(this)],
         phoneNumber: ["", Validators.required],
         password: ["", Validators.required],
         rePassword: ["", Validators.required],
-        sex: ["", Validators.required],
-        age: ["", Validators.required],
-        status: ["", Validators.required],
-        educationLevel: ["", Validators.required],
+        sex: [""],
+        age: [""],
+        status: [""],
+        educationLevel: [""],
         otherStatus: [""],
         otherEduvationLevel: [""]
       },
@@ -152,9 +152,7 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     if (this.isFormValid()) {
-      this.isAddressFormActive = true;
-      this.user.email = this.user.email.toLowerCase();
-      this.isBasicFormActive = false;
+      this.onAdressNext();
     } else {
       this.markFormGroupTouched(this.registerForm);
     }
@@ -162,16 +160,6 @@ export class RegisterComponent implements OnInit {
 
   onAdressNext() {
     this.isLoading = true;
-    this.user.cityId = this.address.cityId;
-    const temp = {
-      wereda: this.address.wereda,
-      houseNo: this.address.houseNo,
-      emergencyContact: {
-        fullName: this.address.emergencyContact.fullName,
-        phoneNumber: this.address.emergencyContact.phoneNumber
-      }
-    };
-    this.user.address = temp;
     this.spinner.show();
     this.authService.register({ user: this.user }).subscribe(
       res => {

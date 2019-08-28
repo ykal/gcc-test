@@ -1,0 +1,112 @@
+<app-header></app-header>
+<div class="container" id="projects-list-content">
+  <div class="row">
+    <!-- Projects list -->
+    <ng-container>
+      <div class="col-md-3 col-sm-6">
+        <div class="about">
+          <i class="fa fa-briefcase"></i>
+
+          <h3>Assessment One</h3>
+          <p
+            id="status-description"
+            data-toggle="modal"
+            data-target="#myModal"
+            data-backdrop="static"
+          >
+            <span id="enroll">Take CAT</span>
+          </p>
+        </div>
+      </div>
+    </ng-container>
+    <!-- Projects list -->
+  </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div *ngIf="requests.length == 0">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            (click)="reset()"
+            class="close"
+            data-dismiss="modal"
+          >
+            &times;
+          </button>
+          <h4 class="modal-title">Assessment One Tasks</h4>
+          <div>
+            <li>
+              <br />
+              1. Create your own story line and write a scratch program forming
+              an animation for the story line. The animation should include 1,
+              the conversation between characters in the story 2, at least two
+              or more background changes 3, Movement of characters; transition
+              of characters from one costume to another.
+            </li>
+            <li>
+              <br />
+              2. Create your own style maze game. The program should have a maze
+              which has different levels and once a player has solved one level
+              it will directly transition to the next level of the game. Thus
+              the game is expected to have at least two levels or more.
+            </li>
+            <li>
+              <br />
+              3. Write a program that takes the sides of the polygon as an input
+              and draw the polygon with the side given by the input.
+            </li>
+            <li>
+              <br />
+              4. Create a pong game. The pong game has one ball and two paddles
+              one for each player. The two players should have their own unique
+              keys to control the movement of the paddle up and down. The
+              environment of the game is shown in the figure. The point of the
+              game is preventing the ball which moves randomly from one point to
+              other from touching the red line. The game should have a variable
+              to store the scores of players and the duration of the game should
+              be limited to a certain period of time.
+            </li>
+          </div>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="requestForm">
+            <div id="resource-form">
+              <div class="form-group">
+                <label id="proposal-label" for="proposal1">File 1</label>
+                <input formControlName="file1" id="proposal1" type="file" />
+              </div>
+              <div class="form-group">
+                <label id="proposal-label" for="proposal2">File 2</label>
+                <input formControlName="file2" id="proposal2" type="file" />
+              </div>
+              <div class="form-group">
+                <label id="proposal-label" for="proposal3">File 3</label>
+                <input formControlName="file3" id="proposal3" type="file" />
+              </div>
+              <div class="form-group">
+                <label id="proposal-label" for="proposal4">File 4</label>
+                <input formControlName="file4" id="proposal4" type="file" />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="submitRequest()" class="btn main-btn">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="requests.length > 0" class="info">
+    <div class="sucessfully-joined">
+      <p class="info-text header">
+        Your CAT submission is under review by our team, please have a patience
+        till you get approval. Thanks
+      </p>
+    </div>
+  </div>
+</div>

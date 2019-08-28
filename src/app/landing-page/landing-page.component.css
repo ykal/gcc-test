@@ -1,7 +1,3 @@
-#about {
-  margin-top: 10em;
-}
-
 .blog-img img {
   width: 100%;
 }
@@ -95,7 +91,7 @@ ul.dropdown1 {
   color: white;
   margin-right: 20px;
   font-size: 4em;
-  font-family: fantasy;
+  font-family: Helvetica, sans-serif;
 }
 
 .code {
