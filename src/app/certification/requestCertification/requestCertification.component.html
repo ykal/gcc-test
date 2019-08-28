@@ -24,7 +24,7 @@
 </div>
 
 <div id="myModal" class="modal fade" role="dialog">
-  <div *ngIf="requests.length == 0">
+  <div>
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -36,8 +36,10 @@
           >
             &times;
           </button>
-          <h4 class="modal-title">Assessment One Tasks</h4>
-          <div>
+          <h4 *ngIf="requests.length == 0" class="modal-title">
+            Assessment One Tasks
+          </h4>
+          <div *ngIf="requests.length == 0">
             <li>
               <br />
               1. Create your own story line and write a scratch program forming
@@ -72,7 +74,7 @@
           </div>
         </div>
         <div class="modal-body">
-          <form [formGroup]="requestForm">
+          <form *ngIf="requests.length == 0" [formGroup]="requestForm">
             <div id="resource-form">
               <div class="form-group">
                 <label id="proposal-label" for="proposal1">File 1</label>
@@ -92,21 +94,21 @@
               </div>
             </div>
           </form>
+          <div *ngIf="requests.length > 0" class="info">
+            <div class="sucessfully-joined">
+              <p class="modal-title">
+                Your CAT submission is under review by our team, please have a
+                patience till you get approval. Thanks
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" *ngIf="requests.length == 0">
           <button type="button" (click)="submitRequest()" class="btn main-btn">
             Submit
           </button>
         </div>
       </div>
-    </div>
-  </div>
-  <div *ngIf="requests.length > 0" class="info">
-    <div class="sucessfully-joined">
-      <p class="info-text header">
-        Your CAT submission is under review by our team, please have a patience
-        till you get approval. Thanks
-      </p>
     </div>
   </div>
 </div>
